@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Scotland · 10-Day Trip Map</title>
+<link rel="preconnect" href="https://unpkg.com" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --loch:#1f5673;       /* deep loch blue */
+    --loch-2:#2a7da3;
+    --heather:#6b4e8f;    /* heather purple */
+    --highland:#3f7a53;   /* highland green */
+    --gold:#d8a13a;       /* whisky gold */
+    --mist:#f4f1ea;       /* parchment / mist */
+    --ink:#1c2024;
+    --ink-soft:#46505a;
+    --line:rgba(31,86,115,.16);
+    --card:rgba(255,255,255,.86);
+    --shadow:0 10px 40px -12px rgba(20,40,55,.45);
+    --header-h:62px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color:var(--ink);
+    background:#e9ecef;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif}
+
+  /* ---------- Header ---------- */
+  header.bar{
+    position:fixed;top:0;left:0;right:0;height:var(--header-h);z-index:1200;
+    display:flex;align-items:center;gap:14px;padding:0 18px;
+    background:linear-gradient(180deg,rgba(28,44,55,.96),rgba(28,44,55,.88));
+    backdrop-filter:blur(8px);color:#fff;
+    box-shadow:0 2px 18px rgba(0,0,0,.25);
+  }
+  .bar .flag{font-size:22px;line-height:1}
+  .bar .title{font-family:'Fraunces',serif;font-weight:600;font-size:18px;white-space:nowrap}
+  .bar .title small{font-weight:400;opacity:.7;font-family:'Inter';font-size:12px;margin-left:8px}
+  .bar .status{margin-left:auto;display:flex;align-items:center;gap:14px;font-size:13px}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);white-space:nowrap}
+  .pill b{font-weight:600}
+  #dayPill{background:var(--gold);color:#2a2410;border-color:transparent;font-weight:600}
+  .daylight{opacity:.85}
+  /* progress */
+  #progress{position:fixed;top:var(--header-h);left:0;height:3px;width:0;
+    background:linear-gradient(90deg,var(--gold),var(--heather));z-index:1200;transition:width .25s ease}
+
+  /* ---------- Map ---------- */
+  #map{position:fixed;top:var(--header-h);left:0;width:56vw;height:calc(100vh - var(--header-h));
+    z-index:1;background:#a9c4d4}
+  .leaflet-container{background:#acc6d6;font-family:'Inter',sans-serif}
+  /* legend */
+  .legend{position:absolute;left:14px;bottom:14px;z-index:600;background:var(--card);
+    backdrop-filter:blur(6px);border-radius:12px;padding:10px 13px;box-shadow:var(--shadow);
+    font-size:12px;color:var(--ink-soft);max-width:210px}
+  .legend b{color:var(--ink);font-size:12.5px}
+  .legend .row{display:flex;align-items:center;gap:8px;margin-top:6px}
+  .legend .swatch{width:13px;height:13px;border-radius:50%;flex:0 0 auto}
+  .legend .sw-stop{background:var(--loch);box-shadow:0 0 0 3px rgba(31,86,115,.2)}
+  .legend .sw-fav{background:var(--gold);box-shadow:0 0 0 3px rgba(216,161,58,.25)}
+  .legend .sw-swap{background:#fff;border:2px dashed var(--heather)}
+  .legend .sw-line{width:18px;height:0;border-top:3px dotted var(--heather);border-radius:0;background:none}
+
+  /* map pins */
+  .pin{position:relative;width:18px;height:18px}
+  .pin .dot{position:absolute;inset:0;border-radius:50%;background:var(--loch);
+    border:2.5px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);transition:transform .2s}
+  .pin.fav .dot{background:var(--gold)}
+  .pin .ring{position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--loch);opacity:0}
+  .pin.fav .ring{border-color:var(--gold)}
+  .pin.active .ring{animation:pulse 1.8s ease-out infinite}
+  .pin.active .dot{transform:scale(1.25)}
+  @keyframes pulse{0%{transform:scale(.6);opacity:.7}100%{transform:scale(2.1);opacity:0}}
+  .pin.drop{animation:drop .5s cubic-bezier(.34,1.56,.64,1)}
+  @keyframes drop{0%{transform:translateY(-22px);opacity:0}60%{opacity:1}100%{transform:none}}
+  .pin.swap .dot{background:#fff;border:2.5px dashed var(--heather);box-shadow:0 2px 5px rgba(0,0,0,.25)}
+  .pin .star{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:12px;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.4))}
+
+  /* ---------- Content column ---------- */
+  #content{position:relative;z-index:2;margin-left:56vw;width:44vw;padding:0;pointer-events:none}
+  .step{min-height:84vh;display:flex;align-items:center;padding:7vh 5vh 7vh 3.5vh}
+  .step:first-child{min-height:92vh}
+  .step.tall{min-height:auto;padding-bottom:9vh}
+  .card{pointer-events:auto;background:var(--card);backdrop-filter:blur(10px);
+    border-radius:18px;box-shadow:var(--shadow);padding:26px 28px;width:100%;
+    border:1px solid rgba(255,255,255,.6);opacity:.45;transform:translateY(24px) scale(.985);
+    transition:opacity .5s ease,transform .5s ease}
+  .step.active .card{opacity:1;transform:none}
+  .kicker{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.07em;color:var(--loch-2);margin-bottom:6px}
+  .kicker .reg{color:var(--heather)}
+  .kicker .dur{margin-left:auto;color:var(--ink-soft);font-weight:500;text-transform:none;letter-spacing:0}
+  .card h2{margin:.1em 0 .35em;font-size:27px;font-weight:600;line-height:1.12}
+  .card h2 .fav{color:var(--gold);font-size:.7em;vertical-align:.18em;margin-left:6px}
+  .card p{margin:.55em 0;color:var(--ink-soft);font-size:15.5px}
+  .card p.lead{color:var(--ink);font-size:16.5px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+  .tag{font-size:12px;padding:4px 10px;border-radius:999px;background:rgba(31,86,115,.08);
+    color:var(--loch);font-weight:500}
+  .tag.book{background:rgba(216,161,58,.16);color:#8a6310}
+  .tag.drive{background:rgba(63,122,83,.12);color:var(--highland)}
+  .tag.fav{background:rgba(216,161,58,.16);color:#8a6310}
+
+  .drivebadge{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;
+    color:var(--highland);background:rgba(63,122,83,.1);padding:5px 12px;border-radius:999px;margin-bottom:12px}
+
+  /* hero / intro */
+  .hero h1{font-size:46px;line-height:1.02;margin:.1em 0 .15em;font-weight:600}
+  .hero .sub{font-size:17px;color:var(--ink-soft)}
+  .hero .scrollcue{margin-top:22px;display:inline-flex;align-items:center;gap:9px;
+    font-size:13px;font-weight:600;color:var(--loch-2);letter-spacing:.03em}
+  .hero .scrollcue .arrow{display:inline-block;animation:bob 1.6s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+  .favs{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 4px}
+  .favs .f{font-size:12.5px;background:rgba(216,161,58,.14);color:#7d590c;padding:4px 11px;border-radius:999px;font-weight:500}
+
+  /* callout */
+  .callout{margin-top:14px;border-left:4px solid var(--gold);background:rgba(216,161,58,.1);
+    padding:12px 15px;border-radius:0 10px 10px 0;font-size:14px;color:#5e4a1c}
+  .callout b{color:#3f3208}
+
+  /* swap & choice options */
+  .opts{display:grid;gap:12px;margin-top:18px}
+  .opt{border:1px solid var(--line);border-radius:13px;padding:14px 16px;background:rgba(255,255,255,.55);
+    transition:transform .15s,box-shadow .15s,border-color .15s;cursor:default}
+  .opt:hover{transform:translateY(-2px);box-shadow:0 8px 22px -12px rgba(20,40,55,.4);border-color:var(--heather)}
+  .opt h4{margin:0 0 3px;font-size:16px;font-weight:600;font-family:'Inter'}
+  .opt h4 .n{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--heather);
+    color:#fff;font-size:12px;text-align:center;line-height:22px;margin-right:8px;vertical-align:1px}
+  .opt p{margin:.25em 0 0;font-size:14px;color:var(--ink-soft)}
+  .opt .meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+  .opt[data-coords]{cursor:pointer}
+  .opt[data-coords]::after{content:"📍 hover to locate";font-size:11px;color:var(--heather);opacity:.7;display:block;margin-top:8px}
+
+  /* checklist */
+  .checkwrap h2,.packwrap h2{margin-top:0}
+  .grp{margin-top:18px}
+  .grp h3{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--loch-2);
+    margin:0 0 4px;font-family:'Inter';font-weight:700}
+  .grp .note{font-size:12.5px;color:var(--ink-soft);margin:0 0 8px}
+  ul.check{list-style:none;margin:0;padding:0}
+  ul.check li{display:flex;align-items:flex-start;gap:11px;padding:8px 0;border-bottom:1px solid var(--line)}
+  ul.check li:last-child{border-bottom:none}
+  ul.check input{appearance:none;width:20px;height:20px;flex:0 0 auto;margin-top:1px;border:2px solid var(--loch-2);
+    border-radius:6px;cursor:pointer;position:relative;transition:.15s;background:#fff}
+  ul.check input:checked{background:var(--highland);border-color:var(--highland)}
+  ul.check input:checked::after{content:"✓";color:#fff;position:absolute;inset:0;text-align:center;
+    line-height:18px;font-size:13px;font-weight:700}
+  ul.check label{font-size:14.5px;cursor:pointer;color:var(--ink)}
+  ul.check li.done label{text-decoration:line-through;color:#9aa3ab}
+  ul.check label b{color:var(--loch)}
+  .resetbtn{margin-top:14px;font-size:12.5px;color:var(--ink-soft);background:none;border:1px solid var(--line);
+    padding:6px 12px;border-radius:8px;cursor:pointer}
+  .resetbtn:hover{border-color:var(--heather);color:var(--heather)}
+  .progress-mini{font-size:12.5px;color:var(--ink-soft);margin-top:6px}
+
+  .footer{padding:5vh 5vh 12vh 3.5vh;color:var(--ink-soft);font-size:13px}
+  .footer .card{opacity:1;transform:none}
+
+  /* ---------- Day nav ---------- */
+  #daynav{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:1100;
+    display:flex;flex-direction:column;gap:2px;align-items:flex-end}
+  #daynav a{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink-soft);
+    font-size:11.5px;font-weight:600;padding:2px 0;opacity:.55;transition:.18s;cursor:pointer}
+  #daynav a .lbl{background:var(--card);padding:2px 8px;border-radius:6px;box-shadow:var(--shadow);
+    transform:translateX(6px);opacity:0;transition:.18s;white-space:nowrap;pointer-events:none}
+  #daynav a .tick{width:18px;height:3px;border-radius:3px;background:var(--ink-soft);opacity:.4}
+  #daynav a:hover .lbl,#daynav a.on .lbl{opacity:1;transform:none}
+  #daynav a:hover{opacity:1}
+  #daynav a.on{opacity:1;color:var(--heather)}
+  #daynav a.on .tick{width:26px;background:var(--heather);opacity:1}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:880px){
+    :root{--header-h:54px}
+    #map{width:100%;height:42vh}
+    #content{margin-left:0;width:100%;padding-top:42vh}
+    .step{min-height:auto;padding:24px 16px;align-items:flex-start}
+    .step:first-child{min-height:auto;padding-top:30px}
+    .card{opacity:1;transform:none}              /* always readable on mobile */
+    .step.active .card{box-shadow:0 12px 30px -10px rgba(20,40,55,.55)}
+    .hero h1{font-size:34px}
+    .bar .title small{display:none}
+    .daylight{display:none}
+    #daynav{display:none}
+    .legend{max-width:150px;font-size:11px;left:8px;bottom:8px;padding:7px 9px}
+  }
+  @media (max-width:880px) and (display-mode:browser){}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <span class="flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+  <span class="title">Scotland <small>10 days · Inverness → Edinburgh</small></span>
+  <div class="status">
+    <span class="pill daylight" title="Late October daylight">🌅 ~07:40 · 🌇 ~16:40</span>
+    <span class="pill" id="regionPill"><b id="regionTxt">The Highlands</b></span>
+    <span class="pill" id="dayPill">Welcome</span>
+  </div>
+</header>
+<div id="progress"></div>
+
+<div id="map"></div>
+<nav id="daynav"></nav>
+<main id="content"></main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+/* ============================================================
+   TRIP DATA
+   ============================================================ */
+const COL = {loch:'#1f5673', gold:'#d8a13a', heather:'#6b4e8f'};
+
+// region keys: north / drive / south
+const STEPS = [
+  {type:'intro', region:'north', regionTxt:'The Highlands', day:'Welcome'},
+
+  // ---------- NORTH ----------
+  {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 1',
+   title:'Arrive &amp; settle in Inverness', dur:'Evening', coords:[57.4778,-4.2247], zoom:12,
+   kick:'Arrival', drive:'✈️ Land at Inverness · pick up the rental car',
+   body:`<p class="lead">Land in Inverness and collect the hire car. Give yourself a slow evening — no rush.</p>`,
+   tags:['Car pickup','Easy dinner in town']},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 1',
+   title:'Stroll the Ness Islands', dur:'~1 hr', coords:[57.4655,-4.2300], zoom:13,
+   kick:'Day 1 · Evening',
+   body:`<p>Little footbridges hop between wooded islands in the River Ness — a gentle leg-stretch right in town after a travel day.</p>`,
+   tags:['Free','Gentle walk','Riverside']},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Loch Ness · North', day:'Day 2', fav:true,
+   title:'Urquhart Castle &amp; Loch Ness', dur:'~1 hr', coords:[57.3242,-4.4426], zoom:11,
+   kick:'Day 2 · Loch Ness', drive:'🚗 ~30 min each way down the loch',
+   body:`<p class="lead">The classic Highland view. Urquhart Castle is a dramatic ruin right on the water — the lochside setting is the real draw, so paying in is optional.</p>`,
+   tags:['Loch Ness','Castle ruin','Photo stop']},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Loch Ness · North', day:'Day 2', fav:true,
+   title:'Loch Ness boat cruise', dur:'~1 hr', coords:[57.3330,-4.4660], zoom:12,
+   kick:'Day 2 · Loch Ness',
+   body:`<p>The best way to actually be <i>on</i> the loch — keep an eye out for Nessie. Book ahead in autumn as sailings thin out.</p>`,
+   tags:['Optional booking','On the water']},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Cairngorms · North', day:'Day 3', fav:true,
+   title:'Horse trek in the Cairngorms', dur:'1–2 hrs in the saddle', coords:[57.1917,-3.8253], zoom:11,
+   kick:'Day 3 · Aviemore', drive:'🚗 ~45 min each way to Aviemore',
+   body:`<p class="lead">Aviemore is the heart of Highland pony trekking. Ride through ancient pine forest and heather with mountain views, then spend the rest of the day on easy forest walks or the funicular.</p>`,
+   tags:['Book ahead','Pick route length','Cairngorms']},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 4',
+   title:'Culloden Battlefield', dur:'~1.5–2 hrs', coords:[57.4775,-4.0936], zoom:12,
+   kick:'Day 4 · Highlands flex',
+   body:`<p class="lead">The 1746 battlefield — quiet and moving, and a big one for <i>Outlander</i> fans. The visitor centre tells the story well.</p>`,
+   tags:['History','Outlander']},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 4',
+   title:'Clava Cairns', dur:'~30 min', coords:[57.4736,-4.0747], zoom:14,
+   kick:'Day 4 · Highlands flex',
+   body:`<p>4,000-year-old standing stones and burial cairns, right next door to Culloden. Atmospheric and free.</p>`,
+   tags:['Free','Standing stones']},
+
+  // ---- North swaps ----
+  {type:'swaps', region:'north', regionTxt:'Inverness · North', day:'Swap options',
+   title:'Highlands — swap options', kick:'Inverness region',
+   intro:`Anything here can replace a Day 1–4 plan. Hover a card with a pin to locate it.`,
+   options:[
+     {n:1,name:'Just rest / early dinner',info:'Skip the Ness Islands stroll and simply rest, or head straight out for an early dinner if you land with energy.'},
+     {n:2,name:'Fort Augustus locks',coords:[57.1437,-4.6806],info:'Drive to the south end of Loch Ness and watch boats climb the canal lock staircase.'},
+     {n:2,name:'Lochside walk',info:'Skip the cruise and take a quiet walk along the shore instead.'},
+     {n:3,name:'Rothiemurchus Estate',coords:[57.1650,-3.8000],info:'Add estate activities near Aviemore — trails, lochs, wildlife.'},
+     {n:3,name:'Cairngorm funicular',coords:[57.1331,-3.6688],book:true,info:'Big mountain views without the climb. Pre-book.'},
+     {n:4,name:'Glen Affric',coords:[57.2730,-4.9650],info:'A half-day in what many call Scotland\'s prettiest glen.'},
+     {n:4,name:'Chanonry Point',coords:[57.5742,-4.0905],info:'Wild dolphin-watching from the shore — one of the UK\'s best spots.'},
+     {n:4,name:'Isle of Skye',coords:[57.4125,-6.1953],info:'Ambitious long day (~2.5 hrs each way) — only if you\'re up for a big drive.'},
+   ]},
+
+  // ---------- DRIVE DAY ----------
+  {type:'stop', route:true, region:'drive', regionTxt:'The Drive South', day:'Day 5',
+   title:'South to Pitlochry', dur:'Morning drive', coords:[56.7028,-3.7290], zoom:11,
+   kick:'Day 5 · Drive day', drive:'🚗 ~1 hr 45 min from Inverness',
+   body:`<p class="lead">Leave Inverness in the morning and roll into pretty Pitlochry — your gateway to the middle of the country.</p>`,
+   tags:['Full driving day','~3.5 hrs total']},
+
+  {type:'stop', route:true, region:'drive', regionTxt:'The Drive South', day:'Day 5', fav:true,
+   title:'Whisky tour — Edradour / Blair Athol', dur:'~1–1.5 hrs', coords:[56.6986,-3.7375], zoom:13,
+   kick:'Day 5 · Drive day',
+   body:`<p>Your one alcohol tour, right on the route. Edradour is tiny and charming; Blair Athol is a short hop away. Designated driver, mind!</p>`,
+   tags:['Book ahead','Tasting']},
+
+  {type:'stop', route:true, region:'drive', regionTxt:'The Drive South', day:'Day 5', fav:true,
+   title:'Blair Castle tour', dur:'~1.5–2 hrs', coords:[56.7656,-3.8553], zoom:13,
+   kick:'Day 5 · Drive day', drive:'🚗 ~15 min past Pitlochry',
+   body:`<p class="lead">The fully-furnished, white-turreted family castle — the furnished one you\'ve been waiting for.</p>`,
+   tags:['Book ahead','Furnished castle'],
+   callout:`<b>⚠️ Mind the season.</b> Blair\'s 2026 season ends <b>Oct 30</b>, and in the final week last entry can be as early as <b>2pm</b>. Land the drive day on or before Oct 30 and aim to reach Blair by early afternoon. After Oct 30, swap in <b>Stirling Castle</b> (open year-round).`},
+
+  {type:'stop', route:true, region:'drive', regionTxt:'The Drive South', day:'Day 5',
+   title:'Arrive in Edinburgh', dur:'Evening', coords:[55.9533,-3.1883], zoom:12,
+   kick:'Day 5 · Drive day', drive:'🚗 ~1 hr 45 min · then drop the rental car',
+   body:`<p class="lead">Roll into the capital and <b>drop the rental car</b> — you won\'t need it in the city. Two hotels, the whole trip.</p>`,
+   tags:['Return car','Settle in']},
+
+  // ---- Drive swaps ----
+  {type:'swaps', region:'drive', regionTxt:'The Drive South', day:'Swap options',
+   title:'Drive day — swap options', kick:'In-between region',
+   intro:`Options along the A9 corridor between the Highlands and the city.`,
+   options:[
+     {n:5,name:'Dewar\'s Aberfeldy',coords:[56.6170,-3.8660],book:true,info:'Swap the distillery for Dewar\'s Aberfeldy nearby — slick visitor experience.'},
+     {n:5,name:'The Kelpies',coords:[56.0197,-3.7556],info:'Quick photo stop at the giant 30m horse-head sculptures near the end of the drive.'},
+     {n:5,name:'Stirling Castle',coords:[56.1239,-3.9485],book:true,info:'Open year-round with furnished royal apartments — the drive-day castle if your dates fall after Oct 30.'},
+     {n:5,name:'Skip the castle',info:'Bank the time for Edinburgh — but this is the day Blair fits best, so think twice.'},
+   ]},
+
+  // ---------- SOUTH ----------
+  {type:'stop', route:true, region:'south', regionTxt:'Old Town · Edinburgh', day:'Day 6', fav:true,
+   title:'Royal Mile &amp; Edinburgh Castle', dur:'~1–1.5 hrs', coords:[55.9486,-3.1999], zoom:15,
+   kick:'Day 6 · Old Town',
+   body:`<p class="lead">Walk the Royal Mile and take in the castle from the esplanade — the views and exterior are free, the icon without the crowds inside.</p>`,
+   tags:['Free','Royal Mile','Icon']},
+
+  {type:'stop', route:true, region:'south', regionTxt:'Old Town · Edinburgh', day:'Day 6', fav:true,
+   title:'Palace of Holyroodhouse', dur:'~1.5–2 hrs', coords:[55.9527,-3.1722], zoom:15,
+   kick:'Day 6 · Old Town',
+   body:`<p>The King\'s furnished Edinburgh residence at the foot of the Mile, with Mary Queen of Scots\' chambers. Your furnished city palace.</p>`,
+   tags:['Book ahead','Furnished']},
+
+  {type:'stop', route:true, region:'south', regionTxt:'Old Town · Edinburgh', day:'Day 6', fav:true,
+   title:'Arthur\'s Seat hike', dur:'~1.5–2 hrs', coords:[55.9444,-3.1617], zoom:14,
+   kick:'Day 6 · The volcano',
+   body:`<p class="lead">The extinct volcano in the middle of the city — about 45 min up to a 360° view. Right behind Holyrood, so it pairs perfectly.</p>`,
+   tags:['Free','Hike','360° view']},
+
+  {type:'stop', route:true, region:'south', regionTxt:'Edinburgh', day:'Day 7', fav:true,
+   title:'Make-your-own-bag workshop', dur:'~1 hr', coords:[55.9510,-3.1860], zoom:15,
+   kick:'Day 7 · Craft',
+   body:`<p class="lead">Design and build your own Harris Tweed + leather bag — satchel or backpack — at the Islander workshop.</p>`,
+   tags:['Book ahead','Very popular','Keepsake']},
+
+  {type:'stop', route:true, region:'south', regionTxt:'Edinburgh', day:'Day 7',
+   title:'National Museum of Scotland', dur:'~2–3 hrs', coords:[55.9472,-3.1903], zoom:15,
+   kick:'Day 7 · Museum',
+   body:`<p>Free and genuinely world-class — the perfect plan if the weather turns. Wander the Old Town shops and cafés in between.</p>`,
+   tags:['Free','Indoor','Rainy-day pick']},
+
+  {type:'choice', region:'south', regionTxt:'Edinburgh', day:'Day 8',
+   title:'Day trip — pick one', kick:'Day 8 · Excursion',
+   intro:`A full day out of the city. Choose the one that suits your energy and the weather.`,
+   options:[
+     {n:'A',name:'Rosslyn Chapel',coords:[55.8556,-3.1606],book:true,info:'Half day, ~30 min out. The intricately carved Da Vinci Code chapel.'},
+     {n:'B',name:'North Berwick',coords:[56.0577,-2.7177],info:'Full day, ~40 min out. Seaside town, a small volcanic hill to climb, and a seabird centre.'},
+     {n:'C',name:'Glasgow',coords:[55.8686,-4.2906],info:'Full day, ~1 hr by train. Bigger city and the free, excellent Kelvingrove museum.'},
+   ]},
+
+  {type:'stop', route:true, region:'south', regionTxt:'Edinburgh', day:'Day 9',
+   title:'Calton Hill &amp; loose ends', dur:'~45 min + flex', coords:[55.9553,-3.1820], zoom:15,
+   kick:'Day 9 · Flex day',
+   body:`<p class="lead">The most photographed view in the city. Then circle back to whatever you loved — a second museum, last shopping, a long lunch.</p>`,
+   tags:['Free','Best view','Flex']},
+
+  {type:'stop', route:true, region:'south', regionTxt:'Edinburgh', day:'Day 10',
+   title:'Departure', dur:'Allow ~30 min to airport', coords:[55.9508,-3.3615], zoom:13,
+   kick:'Day 10 · Home',
+   body:`<p class="lead">Fly out of Edinburgh. Leave time to reach the airport (~30 min from the centre). Cheerio, Scotland. 🏴󠁧󠁢󠁳󠁣󠁴󠁿</p>`,
+   tags:['Airport']},
+
+  // ---- South swaps ----
+  {type:'swaps', region:'south', regionTxt:'Edinburgh', day:'Swap options',
+   title:'Edinburgh — swap options', kick:'Edinburgh region',
+   intro:`Ways to fill, deepen, or swap a city day.`,
+   options:[
+     {n:6,name:'Underground / ghost tour',coords:[55.9489,-3.1906],book:true,info:'Add an evening vaults or ghost tour in the Old Town.'},
+     {n:6,name:'Calton Hill (easy climb)',coords:[55.9553,-3.1820],info:'Swap Arthur\'s Seat for a gentle 30–45 min climb with a huge view.'},
+     {n:7,name:'Scotch Whisky Experience',coords:[55.9485,-3.1959],book:true,info:'A second tasting, right by the castle.'},
+     {n:7,name:'Dean Village + Water of Leith',coords:[55.9510,-3.2186],info:'Storybook-pretty riverside walk minutes from the centre.'},
+     {n:7,name:'Stockbridge',coords:[55.9577,-3.2074],info:'Indie shops, delis, and a Sunday market.'},
+     {n:9,name:'Go deeper in Edinburgh',info:'Holyrood Park, the Botanic Garden, or another museum on a relaxed day.'},
+   ]},
+
+  // ---- checklist & packing ----
+  {type:'booking', region:'south', regionTxt:'Before you go', day:'Reserve & book'},
+  {type:'packing', region:'south', regionTxt:'Before you go', day:'Pack'},
+];
+
+/* ---- Booking checklist data ---- */
+const BOOKING = [
+  {h:'Book first — these sell out or set your dates', note:'Lock these before anything else.', items:[
+    'Flights — into <b>Inverness</b>, out of <b>Edinburgh</b> (likely a UK/EU connection)',
+    'Hotel 1 — <b>Inverness</b>, 4 nights',
+    'Hotel 2 — <b>Edinburgh</b>, 5 nights',
+    'Rental car — <b>one-way, Inverness → Edinburgh</b>; reserve an <b>automatic</b>',
+  ]},
+  {h:'Book ahead — timed tickets / very popular', items:[
+    'Blair Castle <i>(mind the Day 5 season note)</i>',
+    'Palace of Holyroodhouse',
+    'Islander bag workshop',
+    'Horse trek (Cairngorms / Aviemore)',
+    'Whisky tour (Pitlochry)',
+    'Loch Ness cruise <i>(optional)</i>',
+  ]},
+  {h:'No booking needed', items:[
+    'Edinburgh Castle (seen from outside)',
+    'National Museum of Scotland (free)',
+    'Arthur\'s Seat',
+    'Calton Hill',
+  ]},
+  {h:'If you swap these in, book them too', items:[
+    'Rosslyn Chapel',
+    'Underground / ghost tour',
+    'Scotch Whisky Experience',
+    'Cairngorm funicular',
+    'North Berwick boat trip',
+  ]},
+];
+
+/* ---- Packing list data ---- */
+const PACKING = [
+  {h:'Weather essentials', items:[
+    'Waterproof hooded rain jacket each (your "umbrella" — wind kills real ones)',
+    'Rain trousers (horse ride, Arthur\'s Seat, Highland walks)',
+    'Warm mid-layers — fleece/sweater + a thermal base layer',
+    'Hat, gloves, scarf',
+    'Quick-dry trousers (skip jeans on active days)',
+  ]},
+  {h:'Footwear', items:[
+    'Waterproof walking shoes / light boots, broken in',
+    'Comfortable everyday shoes',
+    'Something nicer for dinners (optional)',
+  ]},
+  {h:'For the horse ride', items:[
+    'Long trousers + closed shoes with a small heel (helmets & gear usually provided)',
+  ]},
+  {h:'Driving', items:[
+    'Driver\'s license (+ International Driving Permit if required)',
+    'Phone mount + car charging cable; download offline maps',
+    'Remember: drive on the <b>left</b>, you reserved an <b>automatic</b>',
+  ]},
+  {h:'Tech & practical', items:[
+    'UK plug adapters (Type G — three rectangular pins)',
+    'Power bank (cold + photos drain phones)',
+    'Chargers, camera',
+  ]},
+  {h:'Day-to-day', items:[
+    'Packable daypack',
+    'Reusable water bottle',
+    'Lip balm / moisturizer, any meds, small first-aid kit',
+    'Sunglasses (low autumn sun is blinding)',
+  ]},
+  {h:'Documents & money', items:[
+    'Passports + travel insurance details',
+    'A contactless card (lots of places are card-only now)',
+  ]},
+  {h:'You can skip', note:'Leave these at home.', items:[
+    'Heavy midge repellent (midges are gone by late October)',
+    'A big umbrella (the hood wins)',
+  ]},
+];
+
+const REGION_NAMES = {north:'The Highlands', drive:'The Drive South', south:'Edinburgh'};
+
+/* ============================================================
+   MAP
+   ============================================================ */
+const SCOT_BOUNDS = L.latLngBounds([55.75,-6.4],[57.75,-2.55]);
+const map = L.map('map',{zoomControl:true, scrollWheelZoom:false, attributionControl:true})
+  .fitBounds(SCOT_BOUNDS);
+map.zoomControl.setPosition('topright');
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
+  attribution:'&copy; OpenStreetMap &copy; CARTO',
+  subdomains:'abcd', maxZoom:19
+}).addTo(map);
+
+// legend
+const legend = L.control({position:'bottomleft'});
+legend.onAdd = function(){
+  const d = L.DomUtil.create('div','legend');
+  d.innerHTML = `<b>Map key</b>
+    <div class="row"><span class="swatch sw-stop"></span> Planned stop</div>
+    <div class="row"><span class="swatch sw-fav"></span> Confirmed favourite ★</div>
+    <div class="row"><span class="swatch sw-swap"></span> Swap option</div>
+    <div class="row"><span class="swatch sw-line"></span> Route travelled</div>`;
+  return d;
+};
+legend.addTo(map);
+
+// build ordered route nodes
+const routeNodes = STEPS.filter(s=>s.route);
+routeNodes.forEach((s,i)=> s.routeIndex = i);
+
+const markers = [];   // main markers by routeIndex
+const legs = [];      // polylines by routeIndex (leg ending at node i)
+let maxDrawn = -1;
+const swapLayer = L.layerGroup().addTo(map);
+
+function makePin(opts){
+  const cls = 'pin'+(opts.fav?' fav':'')+(opts.swap?' swap':'')+' drop';
+  const star = opts.fav?'<span class="star">★</span>':'';
+  return L.divIcon({className:'',html:`<div class="${cls}">${star}<span class="ring"></span><span class="dot"></span></div>`,
+    iconSize:[18,18], iconAnchor:[9,9]});
+}
+
+function ensureMarker(i){
+  if(markers[i]) return markers[i];
+  const node = routeNodes[i];
+  const m = L.marker(node.coords,{icon:makePin({fav:node.fav}), riseOnHover:true})
+    .bindTooltip(node.title.replace(/&amp;/g,'&'),{direction:'top',offset:[0,-12]});
+  m.addTo(map);
+  markers[i]=m;
+  return m;
+}
+
+function drawLeg(i, animate){
+  if(i<=0 || legs[i]) return;
+  const a = routeNodes[i-1].coords, b = routeNodes[i].coords;
+  const line = L.polyline([a], {color:COL.heather, weight:3, opacity:.85,
+    dashArray:'1 7', lineCap:'round'}).addTo(map);
+  legs[i]=line;
+  if(!animate){ line.setLatLngs([a,b]); return; }
+  const t0 = performance.now(), dur=650;
+  (function frame(now){
+    const t = Math.min(1,(now-t0)/dur);
+    const lat = a[0]+(b[0]-a[0])*t, lng = a[1]+(b[1]-a[1])*t;
+    line.setLatLngs([a,[lat,lng]]);
+    if(t<1) requestAnimationFrame(frame);
+  })(t0);
+}
+
+function setActiveMarker(idx){
+  markers.forEach((m,i)=>{ if(!m) return;
+    const el=m.getElement(); if(el){ const p=el.querySelector('.pin'); if(p) p.classList.toggle('active', i===idx);} });
+}
+
+function routeUpTo(idx){
+  for(let i=0;i<=idx;i++){
+    ensureMarker(i);
+    drawLeg(i, i>maxDrawn);
+  }
+  if(idx>maxDrawn) maxDrawn=idx;
+}
+
+function clearSwaps(){ swapLayer.clearLayers(); }
+
+function showOptionMarkers(options){
+  clearSwaps();
+  const pts=[];
+  options.forEach(o=>{
+    if(!o.coords) return;
+    const m=L.marker(o.coords,{icon:makePin({swap:true})})
+      .bindTooltip(o.name,{direction:'top',offset:[0,-10]});
+    swapLayer.addLayer(m); pts.push(o.coords); o._marker=m;
+  });
+  return pts;
+}
+
+/* ============================================================
+   BUILD CONTENT
+   ============================================================ */
+const content = document.getElementById('content');
+const daynav = document.getElementById('daynav');
+let lastDay = null;
+const navItems = [];
+
+function tagHTML(t){
+  let cls='tag';
+  if(/book/i.test(t)) cls+=' book';
+  return `<span class="${cls}">${t}</span>`;
+}
+
+function el(html){ const d=document.createElement('div'); d.innerHTML=html.trim(); return d.firstElementChild; }
+
+STEPS.forEach((s,idx)=>{
+  s.order = idx;
+  const section = document.createElement('section');
+  section.className='step'+((s.type==='swaps'||s.type==='choice'||s.type==='booking'||s.type==='packing')?' tall':'');
+  section.id='step-'+idx;
+  section.dataset.idx=idx;
+
+  let inner='';
+  if(s.type==='intro'){
+    inner=`<div class="card hero">
+      <div class="kicker"><span>10-day itinerary</span></div>
+      <h1>Highlands &amp; the<br>Capital</h1>
+      <p class="sub">Late October · two bases, <b>Inverness</b> in the north then <b>Edinburgh</b> in the south, with the best of the middle caught on the drive between. Only two hotels the whole trip.</p>
+      <div class="favs">
+        <span class="f">★ Loch Ness</span><span class="f">★ Highland horse ride</span>
+        <span class="f">★ Blair Castle</span><span class="f">★ Whisky tour</span>
+        <span class="f">★ Edinburgh Castle</span><span class="f">★ Holyrood Palace</span>
+        <span class="f">★ Bag workshop</span><span class="f">★ Arthur\'s Seat</span>
+      </div>
+      <div class="scrollcue"><span class="arrow">↓</span> Scroll to begin the journey</div>
+    </div>`;
+  }
+  else if(s.type==='stop'){
+    inner=`<div class="card">
+      <div class="kicker"><span>${s.kick||''}</span> <span class="reg"></span>
+        ${s.dur?`<span class="dur">⏱ ${s.dur}</span>`:''}</div>
+      <h2>${s.title}${s.fav?' <span class="fav">★</span>':''}</h2>
+      ${s.drive?`<div class="drivebadge">${s.drive}</div>`:''}
+      ${s.body||''}
+      ${s.callout?`<div class="callout">${s.callout}</div>`:''}
+      <div class="tags">${(s.tags||[]).map(tagHTML).join('')}${s.fav?'<span class="tag fav">★ Confirmed favourite</span>':''}</div>
+    </div>`;
+  }
+  else if(s.type==='swaps'||s.type==='choice'){
+    const opts = s.options.map(o=>`
+      <div class="opt" ${o.coords?`data-coords="${o.coords[0]},${o.coords[1]}"`:''}>
+        <h4><span class="n">${o.n}</span>${o.name}</h4>
+        <p>${o.info}</p>
+        <div class="meta">${o.book?'<span class="tag book">Book ahead</span>':''}${o.coords?'<span class="tag">📍 On map</span>':''}</div>
+      </div>`).join('');
+    inner=`<div class="card">
+      <div class="kicker"><span>${s.kick||''}</span></div>
+      <h2>${s.title}</h2>
+      <p>${s.intro||''}</p>
+      <div class="opts">${opts}</div>
+    </div>`;
+  }
+  else if(s.type==='booking'){
+    inner=`<div class="card checkwrap">
+      <div class="kicker"><span>Before you go</span></div>
+      <h2>Reserve &amp; book</h2>
+      <p>Ticked items save automatically on this device.</p>
+      <div class="progress-mini" id="bookProg"></div>
+      ${BOOKING.map((g,gi)=>`<div class="grp"><h3>${g.h}</h3>${g.note?`<p class="note">${g.note}</p>`:''}
+        <ul class="check">${g.items.map((it,ii)=>checkLi('book',gi,ii,it)).join('')}</ul></div>`).join('')}
+      <button class="resetbtn" data-reset="book">Clear all ticks</button>
+    </div>`;
+  }
+  else if(s.type==='packing'){
+    inner=`<div class="card packwrap">
+      <div class="kicker"><span>Before you go</span></div>
+      <h2>Packing list</h2>
+      <p>Late October — expect rain, wind &amp; short days.</p>
+      <div class="progress-mini" id="packProg"></div>
+      ${PACKING.map((g,gi)=>`<div class="grp"><h3>${g.h}</h3>${g.note?`<p class="note">${g.note}</p>`:''}
+        <ul class="check">${g.items.map((it,ii)=>checkLi('pack',gi,ii,it)).join('')}</ul></div>`).join('')}
+      <button class="resetbtn" data-reset="pack">Clear all ticks</button>
+    </div>`;
+  }
+
+  section.appendChild(el(inner));
+  content.appendChild(section);
+
+  // day nav entry (one per distinct day label, plus checklist/packing)
+  if(s.day && s.day!==lastDay && s.type!=='swaps'){
+    const a=document.createElement('a');
+    a.dataset.target='step-'+idx;
+    a.innerHTML=`<span class="lbl">${s.day}</span><span class="tick"></span>`;
+    a.onclick=()=>document.getElementById('step-'+idx).scrollIntoView({behavior:'smooth'});
+    daynav.appendChild(a);
+    navItems.push({a, idx});
+    lastDay=s.day;
+  }
+});
+
+function checkLi(scope,gi,ii,text){
+  const key=`scot-${scope}-${gi}-${ii}`;
+  return `<li><input type="checkbox" id="${key}" data-key="${key}"><label for="${key}">${text}</label></li>`;
+}
+
+const footer=document.createElement('div');
+footer.className='footer';
+footer.innerHTML=`Made for the trip · map © OpenStreetMap & CARTO · scroll back up to retrace the route anytime.`;
+content.appendChild(footer);
+
+/* ---- checkbox persistence ---- */
+function initChecks(){
+  document.querySelectorAll('ul.check input').forEach(cb=>{
+    const k=cb.dataset.key;
+    if(localStorage.getItem(k)==='1'){ cb.checked=true; cb.closest('li').classList.add('done'); }
+    cb.addEventListener('change',()=>{
+      localStorage.setItem(k, cb.checked?'1':'0');
+      cb.closest('li').classList.toggle('done', cb.checked);
+      updateProg();
+    });
+  });
+  document.querySelectorAll('[data-reset]').forEach(btn=>{
+    btn.onclick=()=>{
+      const sc=btn.dataset.reset;
+      document.querySelectorAll(`ul.check input[data-key^="scot-${sc}-"]`).forEach(cb=>{
+        cb.checked=false; localStorage.setItem(cb.dataset.key,'0'); cb.closest('li').classList.remove('done');
+      });
+      updateProg();
+    };
+  });
+  updateProg();
+}
+function progFor(scope,elId){
+  const all=document.querySelectorAll(`ul.check input[data-key^="scot-${scope}-"]`);
+  const done=[...all].filter(c=>c.checked).length;
+  const e=document.getElementById(elId);
+  if(e) e.textContent = `${done} of ${all.length} done`;
+}
+function updateProg(){ progFor('book','bookProg'); progFor('pack','packProg'); }
+initChecks();
+
+// hover-to-locate on option cards
+content.addEventListener('mouseover',e=>{
+  const opt=e.target.closest('.opt[data-coords]');
+  if(!opt) return;
+  const [la,ln]=opt.dataset.coords.split(',').map(Number);
+  map.panTo([la,ln],{animate:true,duration:.6});
+});
+
+/* ============================================================
+   SCROLL ACTIVATION
+   ============================================================ */
+const headerDay=document.getElementById('dayPill');
+const regionTxt=document.getElementById('regionTxt');
+const progressBar=document.getElementById('progress');
+let current=-1;
+
+function activate(idx){
+  if(idx===current) return;
+  current=idx;
+  const s=STEPS[idx];
+  document.querySelectorAll('.step').forEach((el,i)=>el.classList.toggle('active', i===idx));
+
+  // header
+  headerDay.textContent = s.day || '';
+  regionTxt.textContent = s.regionTxt || REGION_NAMES[s.region] || '';
+
+  // nav highlight: find last nav item with idx<=current
+  let active=null;
+  navItems.forEach(n=>{ if(n.idx<=idx) active=n; });
+  navItems.forEach(n=>n.a.classList.toggle('on', n===active));
+
+  // progress
+  progressBar.style.width = (idx/(STEPS.length-1)*100)+'%';
+
+  // map behaviour
+  if(s.type==='stop'){
+    clearSwaps();
+    routeUpTo(s.routeIndex);
+    setActiveMarker(s.routeIndex);
+    map.flyTo(s.coords, s.zoom||13, {duration:1.3});
+  } else if(s.type==='swaps'||s.type==='choice'){
+    setActiveMarker(-1);
+    const pts=showOptionMarkers(s.options);
+    if(pts.length){
+      const b=L.latLngBounds(pts);
+      // include the region's last visited stop for context
+      map.flyToBounds(b.pad(0.35),{duration:1.3, maxZoom:11});
+    }
+  } else if(s.type==='intro'){
+    clearSwaps(); setActiveMarker(-1);
+    map.flyToBounds(SCOT_BOUNDS,{duration:1.3});
+  } else { // booking / packing
+    clearSwaps(); setActiveMarker(-1);
+    map.flyToBounds(SCOT_BOUNDS,{duration:1.3});
+  }
+}
+
+const io=new IntersectionObserver((entries)=>{
+  // pick the most-centered intersecting step
+  let best=null, bestRatio=0;
+  entries.forEach(en=>{
+    if(en.isIntersecting && en.intersectionRatio>bestRatio){ best=en; bestRatio=en.intersectionRatio; }
+  });
+  if(best) activate(+best.target.dataset.idx);
+},{root:null, rootMargin:'-42% 0px -42% 0px', threshold:[0,.25,.5,1]});
+
+document.querySelectorAll('.step').forEach(s=>io.observe(s));
+
+// activate intro on load
+activate(0);
+window.addEventListener('load',()=>setTimeout(()=>map.invalidateSize(),200));
+</script>
+</body>
+</html>
