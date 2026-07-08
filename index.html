@@ -313,9 +313,18 @@ const STEPS = [
    body:`<p>4,000-year-old standing stones and burial cairns, right next door to Culloden. Atmospheric and free.</p>`,
    food:[
      {meal:'Lunch',name:'Culloden visitor centre café',d:'simple soups and sandwiches right at the battlefield — easiest option between the two sites.'},
-     {meal:'Dinner',name:'River House',coords:[57.4794,-4.2308],d:'tiny riverside seafood spot in Inverness — exceptional, and it books out. Reserve for your last Highland night.'},
    ],
    tags:['Free','Standing stones']},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 4',
+   title:"Leakey's Bookshop", dur:'~1 hr', coords:[57.4802,-4.2265], zoom:15,
+   kick:'Day 4 · Back in town',
+   body:`<p class="lead">Scotland\'s largest second-hand bookshop, filling an 18th-century Gaelic church on Church Street — floor-to-ceiling shelves, a spiral staircase, and a wood-burning stove crackling in the middle of it all.</p>
+   <p>The perfect late-afternoon wander after the battlefield — it\'s a two-minute walk from the Church Street pubs.</p>`,
+   food:[
+     {meal:'Dinner',name:'River House',coords:[57.4794,-4.2308],d:'tiny riverside seafood spot two streets away — exceptional, and it books out. Reserve for your last Highland night.'},
+   ],
+   tags:['Free to browse','Closed Sundays','Open 10–5:30']},
 
   // ---- North swaps ----
   {type:'swaps', region:'north', regionTxt:'Inverness · North', day:'Swap options',
@@ -355,6 +364,13 @@ const STEPS = [
    body:`<p class="lead">The fully-furnished, white-turreted family castle — the furnished one you\'ve been waiting for.</p>`,
    tags:['Book ahead','Furnished castle'],
    callout:`<b>⚠️ Mind the season.</b> Blair\'s 2026 season ends <b>Oct 30</b>, and in the final week last entry can be as early as <b>2pm</b>. Land the drive day on or before Oct 30 and aim to reach Blair by early afternoon. After Oct 30, swap in <b>Stirling Castle</b> (open year-round).`},
+
+  {type:'stop', route:true, region:'drive', regionTxt:'The Drive South', day:'Day 5',
+   title:'Scone Palace', dur:'~1–1.5 hrs', coords:[56.4237,-3.4266], zoom:12,
+   kick:'Day 5 · Drive day', drive:'🚗 ~40 min south of Pitlochry — 2 min off the route at Perth',
+   body:`<p class="lead">The crowning place of Scotland\'s kings — Macbeth, Robert the Bruce and 40-odd others were crowned on <b>Moot Hill</b>, where a replica Stone of Scone still sits. Inside, a fully furnished Georgian-Gothic palace; outside, peacocks strutting the grounds.</p>`,
+   tags:['Furnished palace','Stone of Scone','Peacocks'],
+   callout:`<b>⏱ Same season cliff as Blair:</b> open daily only until <b>Oct 31</b>, with <b>last entry 4pm</b>. It makes Day 5 a big day — leave Blair by ~2:30 to make it comfortably. If the day runs long, this is the stop to trim (or trade against the whisky tour).`},
 
   {type:'stop', route:true, region:'drive', regionTxt:'The Drive South', day:'Day 5',
    title:'Arrive in Edinburgh', dur:'Evening', coords:[55.9533,-3.1883], zoom:12,
@@ -491,6 +507,8 @@ const BOOKING = [
     'National Museum of Scotland (free)',
     'Arthur\'s Seat',
     'Calton Hill',
+    'Scone Palace <i>(tickets on the day; online is a little cheaper — last entry 4pm, season ends Oct 31)</i>',
+    'Leakey\'s Bookshop <i>(free — closed Sundays)</i>',
   ]},
   {h:'If you swap these in, book them too', items:[
     'Rosslyn Chapel',

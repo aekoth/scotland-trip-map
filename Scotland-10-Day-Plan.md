@@ -37,6 +37,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 ### Day 4 — Highlands flex day
 - **Culloden Battlefield** *(~1.5–2 hrs)* — the 1746 battlefield, very moving; big for *Outlander* fans.
 - **Clava Cairns** *(~30 min)* — 4,000-year-old standing stones, right next door.
+- **Leakey's Bookshop** *(~1 hr)* — Scotland's largest second-hand bookshop, in an old Gaelic church on Church Street with a wood-burning stove. Back in town for the late afternoon. *Closed Sundays; open 10–5:30.*
 
 *Swap options:* **Glen Affric** for a half-day of Scotland's prettiest glen scenery; **Chanonry Point** for wild dolphin-watching from shore; or an ambitious long day to the **Isle of Skye** (~2.5 hrs each way — only if you're up for a big drive).
 
@@ -48,6 +49,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 - **Drive to Pitlochry** *(~1 hr 45 min)*.
 - **Whisky tour — Edradour or Blair Athol distillery** *(~1–1.5 hrs)* — your one alcohol tour, right on the route. *Book ahead.*
 - **Blair Castle tour** *(~1.5–2 hrs)* — the fully-furnished, white-turreted family castle, 15 min past Pitlochry. The furnished one you've been waiting for. *Book ahead.*
+- **Scone Palace** *(~1–1.5 hrs)* — the crowning place of Scotland's kings (Moot Hill + the replica Stone of Scone), a furnished Georgian-Gothic palace with peacocks in the grounds. ~40 min south of Pitlochry, 2 min off the route at Perth. *Open daily to Oct 31 only, last entry 4pm — leave Blair by ~2:30, or trim this stop if the day runs long.*
 - **Drive on to Edinburgh** *(~1 hr 45 min)* — **drop the rental car** when you arrive; you won't need it in the city.
 
 *Swap options:* swap the distillery for **Dewar's Aberfeldy** nearby; add a quick photo stop at **the Kelpies** (giant horse-head sculptures) near the end of the drive if energy allows; or skip the castle here and bank the time for Edinburgh (but this is the day Blair fits best).
@@ -108,7 +110,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 - [ ] Loch Ness cruise (optional)
 - [ ] Hairy Coo Safari + Calves & Coos bottle-feeding (Rothiemurchus)
 
-**No booking needed:** Edinburgh Castle (you're only seeing it from outside) · National Museum of Scotland (free) · Arthur's Seat · Calton Hill
+**No booking needed:** Edinburgh Castle (you're only seeing it from outside) · National Museum of Scotland (free) · Arthur's Seat · Calton Hill · Scone Palace (tickets on the day; online slightly cheaper — last entry 4pm) · Leakey's Bookshop (free; closed Sundays)
 
 **If you swap any of these in, they need booking too:** Rosslyn Chapel · an underground / ghost tour · the Scotch Whisky Experience · the Cairngorm funicular · any North Berwick boat trip.
 
