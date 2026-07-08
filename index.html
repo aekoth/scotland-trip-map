@@ -71,6 +71,7 @@
   .legend .sw-stop{background:var(--loch);box-shadow:0 0 0 3px rgba(31,86,115,.2)}
   .legend .sw-fav{background:var(--gold);box-shadow:0 0 0 3px rgba(216,161,58,.25)}
   .legend .sw-swap{background:#fff;border:2px dashed var(--heather)}
+  .legend .sw-food{background:var(--highland);width:11px;height:11px}
   .legend .sw-line{width:18px;height:0;border-top:3px dotted var(--heather);border-radius:0;background:none}
 
   /* map pins */
@@ -86,6 +87,8 @@
   .pin.drop{animation:drop .5s cubic-bezier(.34,1.56,.64,1)}
   @keyframes drop{0%{transform:translateY(-22px);opacity:0}60%{opacity:1}100%{transform:none}}
   .pin.swap .dot{background:#fff;border:2.5px dashed var(--heather);box-shadow:0 2px 5px rgba(0,0,0,.25)}
+  .pin.food{width:14px;height:14px}
+  .pin.food .dot{background:var(--highland)}
   .pin .star{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:12px;
     filter:drop-shadow(0 1px 1px rgba(0,0,0,.4))}
 
@@ -131,6 +134,18 @@
   .callout{margin-top:14px;border-left:4px solid var(--gold);background:rgba(216,161,58,.1);
     padding:12px 15px;border-radius:0 10px 10px 0;font-size:14px;color:#5e4a1c}
   .callout b{color:#3f3208}
+
+  /* food picks */
+  .eat{margin-top:14px;border-left:4px solid var(--highland);background:rgba(63,122,83,.08);
+    padding:11px 15px 12px;border-radius:0 10px 10px 0}
+  .eat h5{margin:0 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--highland);font-family:'Inter';font-weight:700}
+  .eat .place{font-size:14px;color:var(--ink);margin-top:6px;line-height:1.45}
+  .eat .place b{font-weight:600}
+  .eat .place .meal{display:inline-block;font-size:10.5px;font-weight:700;color:#fff;
+    background:var(--highland);border-radius:999px;padding:1.5px 8px;margin-right:7px;
+    text-transform:uppercase;letter-spacing:.04em;vertical-align:1px}
+  .eat .place .d{color:var(--ink-soft)}
 
   /* swap & choice options */
   .opts{display:grid;gap:12px;margin-top:18px}
@@ -238,6 +253,10 @@ const STEPS = [
    title:'Arrive &amp; settle in Inverness', dur:'Evening', coords:[57.4778,-4.2247], zoom:12,
    kick:'Arrival', drive:'✈️ Land at Inverness · pick up the rental car',
    body:`<p class="lead">Land in Inverness and collect the hire car. Give yourself a slow evening — no rush.</p>`,
+   food:[
+     {meal:'Dinner',name:'The Mustard Seed',coords:[57.4809,-4.2288],d:'riverside modern-Scottish in a converted church — an Inverness favourite; book a window table.'},
+     {meal:'Casual',name:'Hootananny',coords:[57.4794,-4.2268],d:'pub grub downstairs, live Highland folk music most nights — the fun option if you land with energy.'},
+   ],
    tags:['Car pickup','Easy dinner in town']},
 
   {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 1',
@@ -250,18 +269,28 @@ const STEPS = [
    title:'Urquhart Castle &amp; Loch Ness', dur:'~1 hr', coords:[57.3242,-4.4426], zoom:11,
    kick:'Day 2 · Loch Ness', drive:'🚗 ~30 min each way down the loch',
    body:`<p class="lead">The classic Highland view. Urquhart Castle is a dramatic ruin right on the water — the lochside setting is the real draw, so paying in is optional.</p>`,
+   food:[
+     {meal:'Lunch',name:"Fiddler's Highland Restaurant",coords:[57.3355,-4.4790],d:'in Drumnadrochit, 5 min from the castle — hearty Highland plates and a legendary whisky wall.'},
+   ],
    tags:['Loch Ness','Castle ruin','Photo stop']},
 
   {type:'stop', route:true, region:'north', regionTxt:'Loch Ness · North', day:'Day 2', fav:true,
    title:'Loch Ness boat cruise', dur:'~1 hr', coords:[57.3330,-4.4660], zoom:12,
    kick:'Day 2 · Loch Ness',
    body:`<p>The best way to actually be <i>on</i> the loch — keep an eye out for Nessie. Book ahead in autumn as sailings thin out.</p>`,
+   food:[
+     {meal:'Dinner',name:'Rocpool',coords:[57.4778,-4.2287],d:'back in Inverness — the city\'s Michelin-starred brasserie on the River Ness. Book well ahead; the early-evening menu is great value.'},
+   ],
    tags:['Optional booking','On the water']},
 
   {type:'stop', route:true, region:'north', regionTxt:'Cairngorms · North', day:'Day 3', fav:true,
    title:'Horse trek in the Cairngorms', dur:'1–2 hrs in the saddle', coords:[57.1917,-3.8253], zoom:11,
    kick:'Day 3 · Aviemore', drive:'🚗 ~45 min each way to Aviemore',
    body:`<p class="lead">Aviemore is the heart of Highland pony trekking. Ride through ancient pine forest and heather with mountain views, then spend the rest of the day on easy forest walks or the funicular.</p>`,
+   food:[
+     {meal:'Lunch',name:'The Old Bridge Inn',coords:[57.1876,-3.8214],d:'riverside gastropub in an old gamekeeper\'s cottage by the Spey — log fire, great after the saddle. Lunch served 12–2:15.'},
+     {meal:'Dinner',name:'Black Isle Bar',coords:[57.4793,-4.2271],d:'back in Inverness — wood-fired pizza and the brewery\'s own organic ales. Casual and buzzy.'},
+   ],
    tags:['Book ahead','Pick route length','Cairngorms']},
 
   {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 4',
@@ -274,6 +303,10 @@ const STEPS = [
    title:'Clava Cairns', dur:'~30 min', coords:[57.4736,-4.0747], zoom:14,
    kick:'Day 4 · Highlands flex',
    body:`<p>4,000-year-old standing stones and burial cairns, right next door to Culloden. Atmospheric and free.</p>`,
+   food:[
+     {meal:'Lunch',name:'Culloden visitor centre café',d:'simple soups and sandwiches right at the battlefield — easiest option between the two sites.'},
+     {meal:'Dinner',name:'River House',coords:[57.4794,-4.2308],d:'tiny riverside seafood spot in Inverness — exceptional, and it books out. Reserve for your last Highland night.'},
+   ],
    tags:['Free','Standing stones']},
 
   // ---- North swaps ----
@@ -296,6 +329,10 @@ const STEPS = [
    title:'South to Pitlochry', dur:'Morning drive', coords:[56.7028,-3.7290], zoom:11,
    kick:'Day 5 · Drive day', drive:'🚗 ~1 hr 45 min from Inverness',
    body:`<p class="lead">Leave Inverness in the morning and roll into pretty Pitlochry — your gateway to the middle of the country.</p>`,
+   food:[
+     {meal:'Lunch',name:'Moulin Inn',coords:[56.7176,-3.7255],d:'a 1695 coaching inn in Moulin village, minutes from Edradour — stone walls, open fire, own-brewed ale.'},
+     {meal:'Tea & cake',name:"Hettie's Tearoom",coords:[56.7040,-3.7330],d:'Pitlochry\'s beloved tearoom — 30+ tea blends and serious home baking, if you\'d rather cake than a pub.'},
+   ],
    tags:['Full driving day','~3.5 hrs total']},
 
   {type:'stop', route:true, region:'drive', regionTxt:'The Drive South', day:'Day 5', fav:true,
@@ -315,6 +352,9 @@ const STEPS = [
    title:'Arrive in Edinburgh', dur:'Evening', coords:[55.9533,-3.1883], zoom:12,
    kick:'Day 5 · Drive day', drive:'🚗 ~1 hr 45 min · then drop the rental car',
    body:`<p class="lead">Roll into the capital and <b>drop the rental car</b> — you won\'t need it in the city. Two hotels, the whole trip.</p>`,
+   food:[
+     {meal:'Dinner',name:'Ting Thai Caravan',coords:[55.9461,-3.1889],d:'casual, fast, delicious Thai street food near the Old Town — perfect zero-effort first-night dinner after the drive.'},
+   ],
    tags:['Return car','Settle in']},
 
   // ---- Drive swaps ----
@@ -333,51 +373,74 @@ const STEPS = [
    title:'Royal Mile &amp; Edinburgh Castle', dur:'~1–1.5 hrs', coords:[55.9486,-3.1999], zoom:15,
    kick:'Day 6 · Old Town',
    body:`<p class="lead">Walk the Royal Mile and take in the castle from the esplanade — the views and exterior are free, the icon without the crowds inside.</p>`,
+   food:[
+     {meal:'Lunch',name:'Oink',coords:[55.9490,-3.1930],d:'famous £6 hog-roast rolls on Victoria Street (the pretty curved one) — quick, cheap, and right on your route.'},
+   ],
    tags:['Free','Royal Mile','Icon']},
 
   {type:'stop', route:true, region:'south', regionTxt:'Old Town · Edinburgh', day:'Day 6', fav:true,
    title:'Palace of Holyroodhouse', dur:'~1.5–2 hrs', coords:[55.9527,-3.1722], zoom:15,
    kick:'Day 6 · Old Town',
    body:`<p>The King\'s furnished Edinburgh residence at the foot of the Mile, with Mary Queen of Scots\' chambers. Your furnished city palace.</p>`,
+   food:[
+     {meal:'Tea break',name:"Clarinda's Tearoom",coords:[55.9512,-3.1760],d:'granny\'s-parlour tearoom on the Canongate, two minutes from the palace gates — scones before the volcano.'},
+   ],
    tags:['Book ahead','Furnished']},
 
   {type:'stop', route:true, region:'south', regionTxt:'Old Town · Edinburgh', day:'Day 6', fav:true,
    title:'Arthur\'s Seat hike', dur:'~1.5–2 hrs', coords:[55.9444,-3.1617], zoom:14,
    kick:'Day 6 · The volcano',
    body:`<p class="lead">The extinct volcano in the middle of the city — about 45 min up to a 360° view. Right behind Holyrood, so it pairs perfectly.</p>`,
+   food:[
+     {meal:'Dinner',name:"The Devil's Advocate",coords:[55.9501,-3.1897],d:'moody bar-kitchen in a converted Victorian pump house down an Old Town close — earned dinner after the hike.'},
+     {meal:'Splurge',name:'The Witchery by the Castle',coords:[55.9489,-3.1950],d:'candle-lit, gothic, right on the castle esplanade — the special-occasion option; book far ahead.'},
+   ],
    tags:['Free','Hike','360° view']},
 
   {type:'stop', route:true, region:'south', regionTxt:'Edinburgh', day:'Day 7', fav:true,
    title:'Make-your-own-bag workshop', dur:'~1 hr', coords:[55.9510,-3.1860], zoom:15,
    kick:'Day 7 · Craft',
    body:`<p class="lead">Design and build your own Harris Tweed + leather bag — satchel or backpack — at the Islander workshop.</p>`,
+   food:[
+     {meal:'Lunch',name:'Mums Great Comfort Food',coords:[55.9455,-3.1911],d:'retro diner on Forrest Road, two minutes from the museum — proper sausages, mash and gravy.'},
+   ],
    tags:['Book ahead','Very popular','Keepsake']},
 
   {type:'stop', route:true, region:'south', regionTxt:'Edinburgh', day:'Day 7',
    title:'National Museum of Scotland', dur:'~2–3 hrs', coords:[55.9472,-3.1903], zoom:15,
    kick:'Day 7 · Museum',
    body:`<p>Free and genuinely world-class — the perfect plan if the weather turns. Wander the Old Town shops and cafés in between.</p>`,
+   food:[
+     {meal:'Dinner',name:'Dishoom',coords:[55.9539,-3.1926],d:'Bombay-café Indian on St Andrew Square that Edinburgh has fully adopted — the black daal is the legend. Book, or queue early.'},
+   ],
    tags:['Free','Indoor','Rainy-day pick']},
 
   {type:'choice', region:'south', regionTxt:'Edinburgh', day:'Day 8',
    title:'Day trip — pick one', kick:'Day 8 · Excursion',
    intro:`A full day out of the city. Choose the one that suits your energy and the weather.`,
    options:[
-     {n:'A',name:'Rosslyn Chapel',coords:[55.8556,-3.1606],book:true,info:'Half day, ~30 min out. The intricately carved Da Vinci Code chapel.'},
-     {n:'B',name:'North Berwick',coords:[56.0577,-2.7177],info:'Full day, ~40 min out. Seaside town, a small volcanic hill to climb, and a seabird centre.'},
-     {n:'C',name:'Glasgow',coords:[55.8686,-4.2906],info:'Full day, ~1 hr by train. Bigger city and the free, excellent Kelvingrove museum.'},
+     {n:'A',name:'Rosslyn Chapel',coords:[55.8556,-3.1606],book:true,info:'Half day, ~30 min out. The intricately carved Da Vinci Code chapel. 🍴 Eat: The Original Rosslyn Inn, right across from the chapel.'},
+     {n:'B',name:'North Berwick',coords:[56.0577,-2.7177],info:'Full day, ~40 min out. Seaside town, a small volcanic hill to climb, and a seabird centre. 🍴 Eat: The Rocketeer by the harbour (the famous Lobster Shack is summer-only — closed by late October).'},
+     {n:'C',name:'Glasgow',coords:[55.8686,-4.2906],info:'Full day, ~1 hr by train. Bigger city and the free, excellent Kelvingrove museum. 🍴 Eat: Paesano Pizza (a Glasgow institution) or Ubiquitous Chip on Ashton Lane near Kelvingrove.'},
    ]},
 
   {type:'stop', route:true, region:'south', regionTxt:'Edinburgh', day:'Day 9',
    title:'Calton Hill &amp; loose ends', dur:'~45 min + flex', coords:[55.9553,-3.1820], zoom:15,
    kick:'Day 9 · Flex day',
    body:`<p class="lead">The most photographed view in the city. Then circle back to whatever you loved — a second museum, last shopping, a long lunch.</p>`,
+   food:[
+     {meal:'Brunch',name:'The Cottage at Royal Terrace',coords:[55.9576,-3.1786],d:'seasonal Scottish set menus in an 1836 stone cottage at the foot of Calton Hill (successor to the much-loved Gardener\'s Cottage). Book.'},
+     {meal:'Dinner',name:'Ondine',coords:[55.9488,-3.1918],d:'Edinburgh\'s standout seafood restaurant on George IV Bridge — the last-big-dinner-of-the-trip pick.'},
+   ],
    tags:['Free','Best view','Flex']},
 
   {type:'stop', route:true, region:'south', regionTxt:'Edinburgh', day:'Day 10',
    title:'Departure', dur:'Allow ~30 min to airport', coords:[55.9508,-3.3615], zoom:13,
    kick:'Day 10 · Home',
    body:`<p class="lead">Fly out of Edinburgh. Leave time to reach the airport (~30 min from the centre). Cheerio, Scotland. 🏴󠁧󠁢󠁳󠁣󠁴󠁿</p>`,
+   food:[
+     {meal:'Breakfast',name:'Loudons',coords:[55.9518,-3.1823],d:'a proper full Scottish breakfast near the station before you head for the airport — go out on tattie scones.'},
+   ],
    tags:['Airport']},
 
   // ---- South swaps ----
@@ -495,6 +558,7 @@ legend.onAdd = function(){
     <div class="row"><span class="swatch sw-stop"></span> Planned stop</div>
     <div class="row"><span class="swatch sw-fav"></span> Confirmed favourite ★</div>
     <div class="row"><span class="swatch sw-swap"></span> Swap option</div>
+    <div class="row"><span class="swatch sw-food"></span> Food pick 🍴</div>
     <div class="row"><span class="swatch sw-line"></span> Route travelled</div>`;
   return d;
 };
@@ -508,12 +572,24 @@ const markers = [];   // main markers by routeIndex
 const legs = [];      // polylines by routeIndex (leg ending at node i)
 let maxDrawn = -1;
 const swapLayer = L.layerGroup().addTo(map);
+const foodLayer = L.layerGroup().addTo(map);
 
 function makePin(opts){
-  const cls = 'pin'+(opts.fav?' fav':'')+(opts.swap?' swap':'')+' drop';
+  const cls = 'pin'+(opts.fav?' fav':'')+(opts.swap?' swap':'')+(opts.food?' food':'')+' drop';
   const star = opts.fav?'<span class="star">★</span>':'';
+  const sz = opts.food?14:18;
   return L.divIcon({className:'',html:`<div class="${cls}">${star}<span class="ring"></span><span class="dot"></span></div>`,
-    iconSize:[18,18], iconAnchor:[9,9]});
+    iconSize:[sz,sz], iconAnchor:[sz/2,sz/2]});
+}
+
+function showFoodMarkers(food){
+  foodLayer.clearLayers();
+  (food||[]).forEach(f=>{
+    if(!f.coords) return;
+    L.marker(f.coords,{icon:makePin({food:true})})
+      .bindTooltip('🍴 '+f.name,{direction:'top',offset:[0,-9]})
+      .addTo(foodLayer);
+  });
 }
 
 function ensureMarker(i){
@@ -615,6 +691,8 @@ STEPS.forEach((s,idx)=>{
       ${s.drive?`<div class="drivebadge">${s.drive}</div>`:''}
       ${s.body||''}
       ${s.callout?`<div class="callout">${s.callout}</div>`:''}
+      ${s.food?`<div class="eat"><h5>🍴 Where to eat</h5>${s.food.map(f=>
+        `<div class="place">${f.meal?`<span class="meal">${f.meal}</span>`:''}<b>${f.name}</b> — <span class="d">${f.d}</span></div>`).join('')}</div>`:''}
       <div class="tags">${(s.tags||[]).map(tagHTML).join('')}${s.fav?'<span class="tag fav">★ Confirmed favourite</span>':''}</div>
     </div>`;
   }
@@ -748,11 +826,13 @@ function activate(idx){
   // map behaviour
   if(s.type==='stop'){
     clearSwaps();
+    showFoodMarkers(s.food);
     routeUpTo(s.routeIndex);
     setActiveMarker(s.routeIndex);
     map.flyTo(s.coords, s.zoom||13, {duration:1.3});
   } else if(s.type==='swaps'||s.type==='choice'){
     setActiveMarker(-1);
+    showFoodMarkers(null);
     const pts=showOptionMarkers(s.options);
     if(pts.length){
       const b=L.latLngBounds(pts);
@@ -760,10 +840,10 @@ function activate(idx){
       map.flyToBounds(b.pad(0.35),{duration:1.3, maxZoom:11});
     }
   } else if(s.type==='intro'){
-    clearSwaps(); setActiveMarker(-1);
+    clearSwaps(); setActiveMarker(-1); showFoodMarkers(null);
     map.flyToBounds(SCOT_BOUNDS,{duration:1.3});
   } else { // booking / packing
-    clearSwaps(); setActiveMarker(-1);
+    clearSwaps(); setActiveMarker(-1); showFoodMarkers(null);
     map.flyToBounds(SCOT_BOUNDS,{duration:1.3});
   }
 }
