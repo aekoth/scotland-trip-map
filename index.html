@@ -293,6 +293,14 @@ const STEPS = [
    ],
    tags:['Book ahead','Pick route length','Cairngorms']},
 
+  {type:'stop', route:true, region:'north', regionTxt:'Cairngorms · North', day:'Day 3', fav:true,
+   title:'Meet the hairy coos — Rothiemurchus', dur:'~1–2 hrs', coords:[57.1697,-3.7963], zoom:13,
+   kick:'Day 3 · Rothiemurchus', drive:'🚗 5 min from Aviemore — same estate as the trek',
+   body:`<p class="lead">The <b>Hairy Coo Safari</b>: a Countryside Ranger walks you to the farm and <i>calls</i> the fold — the Highland cows amble right up to the fence to be hand-fed. As close as you can safely get to the fluffy coos (~£14–20pp).</p>
+   <p>And the upgrade: <b>Calves &amp; Coos</b> — a Land Rover ride behind the scenes to the calving area, where you <b>bottle-feed the orphan calf</b>.</p>`,
+   tags:['Book ahead','Hand-feeding','Bottle-feed a calf'],
+   callout:`<b>Pairs perfectly with the horse trek</b> — trek in the morning, lunch at the Old Bridge Inn, coos in the afternoon. Book both Rothiemurchus experiences together.`},
+
   {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 4',
    title:'Culloden Battlefield', dur:'~1.5–2 hrs', coords:[57.4775,-4.0936], zoom:12,
    kick:'Day 4 · Highlands flex',
@@ -317,7 +325,7 @@ const STEPS = [
      {n:1,name:'Just rest / early dinner',info:'Skip the Ness Islands stroll and simply rest, or head straight out for an early dinner if you land with energy.'},
      {n:2,name:'Fort Augustus locks',coords:[57.1437,-4.6806],info:'Drive to the south end of Loch Ness and watch boats climb the canal lock staircase.'},
      {n:2,name:'Lochside walk',info:'Skip the cruise and take a quiet walk along the shore instead.'},
-     {n:3,name:'Rothiemurchus Estate',coords:[57.1650,-3.8000],info:'Add estate activities near Aviemore — trails, lochs, wildlife.'},
+     {n:3,name:'More Rothiemurchus',coords:[57.1650,-3.8000],info:'Beyond the coos — estate trails, lochs, and wildlife walks if you want to linger on the estate.'},
      {n:3,name:'Cairngorm funicular',coords:[57.1331,-3.6688],book:true,info:'Big mountain views without the climb. Pre-book.'},
      {n:4,name:'Glen Affric',coords:[57.2730,-4.9650],info:'A half-day in what many call Scotland\'s prettiest glen.'},
      {n:4,name:'Chanonry Point',coords:[57.5742,-4.0905],info:'Wild dolphin-watching from the shore — one of the UK\'s best spots.'},
@@ -476,6 +484,7 @@ const BOOKING = [
     'Horse trek (Cairngorms / Aviemore)',
     'Whisky tour (Pitlochry)',
     'Loch Ness cruise <i>(optional)</i>',
+    'Hairy Coo Safari + Calves &amp; Coos bottle-feeding (Rothiemurchus)',
   ]},
   {h:'No booking needed', items:[
     'Edinburgh Castle (seen from outside)',
@@ -678,7 +687,7 @@ STEPS.forEach((s,idx)=>{
         <span class="f">★ Loch Ness</span><span class="f">★ Highland horse ride</span>
         <span class="f">★ Blair Castle</span><span class="f">★ Whisky tour</span>
         <span class="f">★ Edinburgh Castle</span><span class="f">★ Holyrood Palace</span>
-        <span class="f">★ Bag workshop</span><span class="f">★ Arthur\'s Seat</span>
+        <span class="f">★ Bag workshop</span><span class="f">★ Arthur\'s Seat</span><span class="f">★ Hairy coo feeding</span>
       </div>
       <div class="scrollcue"><span class="arrow">↓</span> Scroll to begin the journey</div>
     </div>`;

@@ -29,9 +29,10 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 ### Day 3 — Horse ride in the Cairngorms
 - **Drive to Aviemore** *(~45 min each way)* — the heart of Highland pony trekking.
 - **Horse trek** *(1–2 hrs in the saddle)* — riding through ancient pine forest and heather with mountain views. *Book ahead; pick the route length when you book.*
+- **Hairy Coo Safari + Calves & Coos, Rothiemurchus** *(~1–2 hrs)* — a ranger calls the Highland cows right up to the fence for hand-feeding (~£14–20pp), and the Calves & Coos upgrade adds a Land Rover trip to bottle-feed the orphan calf. Five minutes from Aviemore — pairs perfectly with the trek. *Book ahead.*
 - **Time in the Cairngorms** *(remainder)* — easy forest walks, or the mountain funicular.
 
-*Swap options:* longer ride; add the Rothiemurchus estate activities; or the Cairngorm funicular for big views without the climb.
+*Swap options:* longer ride; more Rothiemurchus estate activities (trails, lochs, wildlife); or the Cairngorm funicular for big views without the climb.
 
 ### Day 4 — Highlands flex day
 - **Culloden Battlefield** *(~1.5–2 hrs)* — the 1746 battlefield, very moving; big for *Outlander* fans.
@@ -105,6 +106,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 - [ ] Horse trek (Cairngorms / Aviemore)
 - [ ] Whisky tour (Pitlochry)
 - [ ] Loch Ness cruise (optional)
+- [ ] Hairy Coo Safari + Calves & Coos bottle-feeding (Rothiemurchus)
 
 **No booking needed:** Edinburgh Castle (you're only seeing it from outside) · National Museum of Scotland (free) · Arthur's Seat · Calton Hill
 
