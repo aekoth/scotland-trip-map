@@ -37,14 +37,16 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 
 *Swap options:* longer ride; more Rothiemurchus estate activities (trails, lochs, wildlife); or the Cairngorm funicular for big views without the climb.
 
-### Day 4 — Isle of Skye & the Fairy Pools
-*The biggest day of the trip — ~6½ hrs of driving round-trip. Leave at first light (~7:30) and keep stops disciplined. If it feels heavy, flip Day 3 and Day 4 so the gentler animal day buffers this and the drive south.*
+### Day 4 — Isle of Skye: Fairy Pools, the Storr & dinosaur footprints
+*The biggest day of the trip — now genuinely over daylight budget: ~7½ hrs of driving plus ~4 hrs on foot against ~9 hrs of light. Leave by **7:00**, let the Staffin tide decide the stop order, and be ready to trim (the pools walk can stop at the first big falls; the Storr's lower viewpoints still deliver). If you'd rather not race the sun, the honest fix is trading an Inverness night for a night on Skye — breaks the two-hotel rule but halves the driving. Or flip Day 3 and Day 4 so the animal day buffers this and the drive south.*
 
 - **Drive west + Eilean Donan Castle photo stop** *(~1 hr 45 min out)* — the castle-on-an-islet from every postcard, right beside the A87. Exterior photo is the classic; interior opens 10am if time allows.
-- **The Fairy Pools, Glen Brittle** *(~2–2.5 hrs walk)* — crystal-blue pools and waterfalls under the Black Cuillin; ~2.4 km each way on a good gravel path with footbridges. £6 parking. **Wear the waterproof boots** — muddy and slick when wet. Pause at the Sligachan Old Bridge on the way for the classic Cuillin shot.
-- **Portree** *(~1–1.5 hrs)* — Skye's pastel-harbour capital. Early dinner, then roll east by ~18:30 to be back in Inverness by nine.
+- **The Fairy Pools, Glen Brittle** *(~2–2.5 hrs walk, trimmable to ~1.5)* — crystal-blue pools and waterfalls under the Black Cuillin; ~2.4 km each way on a good gravel path with footbridges. £6 parking. **Wear the waterproof boots.** Pause at the Sligachan Old Bridge on the way for the classic Cuillin shot.
+- **Old Man of Storr hike** *(~1.5–2 hrs)* — Skye's most famous silhouette; steep but short (~2.8 km round trip) from the car park, through Portree. Even the lower viewpoints are spectacular if legs or light run short.
+- **Dinosaur footprints at An Corran, Staffin** *(~30 min; LOW TIDE ONLY)* — 168-million-year-old Megalosaurus tracks on the slabs by the slipway, 15 min past the Storr. Free. **Check the Staffin tide tables** and slot this wherever low water falls; **Kilt Rock & Mealt Falls** is 3 min down the road and pairs perfectly. Tide wrong? **Brothers' Point** (1.5 km headland walk, 10 min south) has ~50 sauropod & theropod prints — same rule.
+- **Portree** *(~1 hr)* — Skye's pastel-harbour capital. Early dinner, then roll east by ~18:30 to be back in Inverness by nine.
 
-*Skye extras (each trades against Portree time or the pools linger — daylight is the budget):* **Old Man of Storr** (steep 1.5–2 hr hike, or car-park view); **Kilt Rock & Mealt Falls** (15-min clifftop waterfall stop); **Fairy Glen** near Uig (~45 min, surreal cone hills); **Quiraing viewpoint** (dramatic, slow single-track); **Talisker Distillery** (Carbost, next to lunch — tour for the passenger); **Eilean Donan interior** (book). **Dunvegan Castle** usually closes mid-October — check before detouring.
+*Skye extras (each trades against something — daylight is the budget):* **Fairy Glen** near Uig (~45 min, surreal cone hills); **Quiraing viewpoint** (dramatic, slow single-track); **Talisker Distillery** (Carbost, next to lunch — tour for the passenger); **Eilean Donan interior** (book). **Dunvegan Castle** usually closes mid-October — check before detouring.
 
 *Swap options:* skip Skye entirely and Day 4 reverts to a gentle flex day — spread the Day 2 sights out and rest before the drive south.
 
@@ -117,7 +119,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 - [ ] Loch Ness cruise (optional)
 - [ ] Hairy Coo Safari + Calves & Coos bottle-feeding (Rothiemurchus)
 
-**No booking needed:** Edinburgh Castle (you're only seeing it from outside) · National Museum of Scotland (free) · Arthur's Seat · Calton Hill · Scone Palace (tickets on the day; online slightly cheaper — last entry 4pm) · Leakey's Bookshop (free; closed Sundays)
+**No booking needed:** Edinburgh Castle (you're only seeing it from outside) · National Museum of Scotland (free) · Arthur's Seat · Calton Hill · Scone Palace (tickets on the day; online slightly cheaper — last entry 4pm) · Leakey's Bookshop (free; closed Sundays) · An Corran dinosaur footprints (free — check Staffin tide tables; low tide only) · Old Man of Storr (just the paid car park)
 
 **If you swap any of these in, they need booking too:** Rosslyn Chapel · an underground / ghost tour · the Scotch Whisky Experience · the Cairngorm funicular · any North Berwick boat trip · Scorrybreac in Portree (the nice Skye dinner — Tue–Sat only) · Talisker Distillery tour · Eilean Donan interior.
 
@@ -156,6 +158,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 - [ ] Packable daypack for hikes and day trips
 - [ ] Reusable water bottle
 - [ ] Towel + swimsuit — only if someone's brave enough for a Fairy Pools dip (it's Baltic)
+- [ ] Headtorch or phone torch — late-October dusk comes fast on the Skye day
 - [ ] Lip balm / moisturizer (the wind is drying), any meds, small first-aid kit
 - [ ] Sunglasses — the low autumn sun is blinding when it does come out
 

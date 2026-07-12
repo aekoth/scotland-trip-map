@@ -325,7 +325,7 @@ const STEPS = [
    kick:'Day 4 · Isle of Skye', drive:'🚗 ~1 hr 45 min from Inverness — leave by ~7:30',
    body:`<p class="lead">The big island day. Head west along Loch Ness and the A87, and pause at <b>Eilean Donan Castle</b> — the castle-on-an-islet from every Scotland postcard, right beside the road. The exterior photo is the classic; go inside only if time allows (opens 10am).</p>`,
    tags:['Photo icon','On the way'],
-   callout:`<b>Biggest day of the trip:</b> ~6½ hrs of driving round-trip. Start at first light (~7:40), keep stops disciplined, and treat everything after the Fairy Pools as a bonus. If that sounds heavy, you can flip Day 3 and Day 4 so the gentler animal day buffers this and the Day 5 drive south.`},
+   callout:`<b>Biggest day of the trip — now genuinely over daylight budget.</b> With the Storr and the dinosaur beach added it\'s ~7½ hrs of driving plus ~4 hrs on foot against ~9 hrs of light. Leave by <b>7:00</b>, let the Staffin tide decide the stop order, and be ready to trim — the pools walk can stop at the first big falls (~1.5 hrs) and the Storr\'s lower viewpoints still deliver. If you\'d rather not race the sun, the honest fix is trading an Inverness night for a night on Skye — it breaks the two-hotel rule but halves the driving.`},
 
   {type:'stop', route:true, region:'north', regionTxt:'Isle of Skye · West', day:'Day 4', fav:true,
    title:'The Fairy Pools', dur:'~2–2.5 hrs walk', coords:[57.2497,-6.2589], zoom:12,
@@ -340,8 +340,22 @@ const STEPS = [
    callout:`<b>Wear the waterproof boots</b> — the path gets muddy and the stones are slick when wet. The pools are swimmable year-round for the brave, but in late October it\'s properly Baltic.`},
 
   {type:'stop', route:true, region:'north', regionTxt:'Isle of Skye · West', day:'Day 4',
-   title:'Portree &amp; the drive home', dur:'~1–1.5 hrs in town', coords:[57.4125,-6.1953], zoom:13,
-   kick:'Day 4 · Isle of Skye', drive:'🚗 ~35 min from Carbost · ~2 hr 40 min back to Inverness',
+   title:'Old Man of Storr hike', dur:'~1.5–2 hrs', coords:[57.5064,-6.1730], zoom:12,
+   kick:'Day 4 · Trotternish', drive:'🚗 ~50 min from Carbost, through Portree',
+   body:`<p class="lead">Skye\'s most famous silhouette — a 50-metre rock pinnacle below the Storr cliffs. The path climbs steeply from the car park (~2.8 km round trip); the classic view over the pinnacles to the sea opens up about two-thirds of the way. Short on time or legs? Even the lower viewpoints are spectacular.</p>`,
+   tags:['Steep but short','Iconic view','Paid car park']},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Isle of Skye · West', day:'Day 4',
+   title:'Dinosaur footprints — An Corran', dur:'~30 min', coords:[57.6303,-6.1937], zoom:13,
+   kick:'Day 4 · Staffin', drive:'🚗 ~15 min past the Storr',
+   body:`<p class="lead">On the rock slabs by Staffin\'s slipway, 168-million-year-old <b>Megalosaurus footprints</b> — three-toed predator tracks pressed into a Jurassic lagoon floor. Free, and a genuine wow.</p>
+   <p><b>Kilt Rock &amp; Mealt Falls</b> is 3 minutes down the road — a waterfall plunging off pleated basalt cliffs into the sea. The two pair perfectly.</p>`,
+   tags:['Free','Jurassic','Low tide only'],
+   callout:`<b>🌊 Tide-gated:</b> the prints are underwater except around <b>low tide</b> — check the Staffin tide tables when planning the day, and slot this stop wherever low water falls. If the tide\'s wrong, <b>Brothers\' Point</b> (a 1.5 km headland walk, 10 min south) has ~50 sauropod &amp; theropod prints, same rule.`},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Isle of Skye · West', day:'Day 4',
+   title:'Portree &amp; the drive home', dur:'~1 hr in town', coords:[57.4125,-6.1953], zoom:13,
+   kick:'Day 4 · Isle of Skye', drive:'🚗 ~30 min back from Staffin · ~2 hr 40 min to Inverness',
    body:`<p class="lead">Skye\'s pastel-harbour capital — wander the harbourfront, grab an early dinner, then point the car east. Aim to be rolling by ~18:30 so you\'re back in Inverness by nine.</p>`,
    food:[
      {meal:'Dinner',name:'Scorrybreac',coords:[57.4136,-6.1930],d:'tiny modern-Scottish spot above the harbour — the special dinner on Skye. Open Tue–Sat from 5pm (closed Sun/Mon); book ahead.'},
@@ -355,8 +369,7 @@ const STEPS = [
    title:'Skye — extras &amp; swaps', kick:'Isle of Skye',
    intro:`Daylight is the budget (~16:40 sunset) — each of these trades against Portree time or the Fairy Pools linger. Hover a card to locate it.`,
    options:[
-     {n:'+',name:'Old Man of Storr',coords:[57.5064,-6.1730],info:'The iconic rock pinnacle, 15 min north of Portree — a steep 1.5–2 hr hike, or just admire it from the car park.'},
-     {n:'+',name:'Kilt Rock & Mealt Falls',coords:[57.6072,-6.1719],info:'A 15-minute clifftop stop — a waterfall plunging straight into the sea off pleated basalt cliffs.'},
+     {n:'+',name:'Brothers\' Point',coords:[57.5900,-6.1540],info:'The wilder dinosaur site — ~50 sauropod & theropod prints on a headland reached by a 1.5 km walk, 10 min south of Staffin. Also low-tide only.'},
      {n:'+',name:'Fairy Glen',coords:[57.5866,-6.3535],info:'A surreal miniature landscape of cone hills and spiral paths near Uig — ~45 min of wandering, pairs thematically with the pools.'},
      {n:'+',name:'Quiraing viewpoint',coords:[57.6435,-6.2645],info:'Arguably the island\'s most dramatic landscape — reached by a slow single-track road; only with spare daylight.'},
      {n:'+',name:'Talisker Distillery',coords:[57.3027,-6.3560],book:true,info:'Skye\'s famous distillery, next to the Old Inn in Carbost — tour for the passenger, shop for the driver.'},
@@ -547,6 +560,8 @@ const BOOKING = [
     'Calton Hill',
     'Scone Palace <i>(tickets on the day; online is a little cheaper — last entry 4pm, season ends Oct 31)</i>',
     'Leakey\'s Bookshop <i>(free — closed Sundays)</i>',
+    'An Corran dinosaur footprints <i>(free — but check the Staffin tide tables; low tide only)</i>',
+    'Old Man of Storr <i>(no ticket — just the paid car park)</i>',
   ]},
   {h:'If you swap these in, book them too', items:[
     'Rosslyn Chapel',
@@ -593,6 +608,7 @@ const PACKING = [
     'Lip balm / moisturizer, any meds, small first-aid kit',
     'Sunglasses (low autumn sun is blinding)',
     'Towel + swimsuit — only if someone\'s brave enough for a Fairy Pools dip (it\'s Baltic)',
+    'Headtorch or phone torch — late-October dusk comes fast on the Skye day',
   ]},
   {h:'Documents & money', items:[
     'Passports + travel insurance details',
