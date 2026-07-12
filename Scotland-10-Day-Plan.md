@@ -19,12 +19,15 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 
 *Swap options:* skip the stroll entirely and just rest; or an early dinner out if you land with energy.
 
-### Day 2 — Loch Ness
+### Day 2 — Loch Ness + Culloden
 - **Drive down Loch Ness** *(~30 min each way)* — the classic Highland view.
 - **Urquhart Castle viewpoint / grounds** *(~1 hr)* — it's a dramatic ruin right on the water (not a furnished one, so no need to pay in unless you want to — the lochside setting is the draw).
 - **Loch Ness boat cruise** *(~1 hr)* — best way to actually be *on* the loch.
+- **Culloden Battlefield** *(~1.5–2 hrs)* — the 1746 battlefield, very moving; big for *Outlander* fans. ~25 min from the loch, east of Inverness.
+- **Clava Cairns** *(~30 min)* — 4,000-year-old standing stones, right next door.
+- **Leakey's Bookshop** *(~1 hr)* — Scotland's largest second-hand bookshop, in an old Gaelic church on Church Street with a wood-burning stove. Indoors, open till 5:30 — the perfect end to the day. *Closed Sundays.*
 
-*Swap options:* drive further to Fort Augustus and watch boats climb the canal locks; or skip the cruise and do a lochside walk.
+*Swap options:* drive further to Fort Augustus and watch boats climb the canal locks; skip the cruise and do a lochside walk; or swap the Culloden afternoon for Glen Affric or dolphin-watching at Chanonry Point.
 
 ### Day 3 — Horse ride in the Cairngorms
 - **Drive to Aviemore** *(~45 min each way)* — the heart of Highland pony trekking.
@@ -34,12 +37,16 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 
 *Swap options:* longer ride; more Rothiemurchus estate activities (trails, lochs, wildlife); or the Cairngorm funicular for big views without the climb.
 
-### Day 4 — Highlands flex day
-- **Culloden Battlefield** *(~1.5–2 hrs)* — the 1746 battlefield, very moving; big for *Outlander* fans.
-- **Clava Cairns** *(~30 min)* — 4,000-year-old standing stones, right next door.
-- **Leakey's Bookshop** *(~1 hr)* — Scotland's largest second-hand bookshop, in an old Gaelic church on Church Street with a wood-burning stove. Back in town for the late afternoon. *Closed Sundays; open 10–5:30.*
+### Day 4 — Isle of Skye & the Fairy Pools
+*The biggest day of the trip — ~6½ hrs of driving round-trip. Leave at first light (~7:30) and keep stops disciplined. If it feels heavy, flip Day 3 and Day 4 so the gentler animal day buffers this and the drive south.*
 
-*Swap options:* **Glen Affric** for a half-day of Scotland's prettiest glen scenery; **Chanonry Point** for wild dolphin-watching from shore; or an ambitious long day to the **Isle of Skye** (~2.5 hrs each way — only if you're up for a big drive).
+- **Drive west + Eilean Donan Castle photo stop** *(~1 hr 45 min out)* — the castle-on-an-islet from every postcard, right beside the A87. Exterior photo is the classic; interior opens 10am if time allows.
+- **The Fairy Pools, Glen Brittle** *(~2–2.5 hrs walk)* — crystal-blue pools and waterfalls under the Black Cuillin; ~2.4 km each way on a good gravel path with footbridges. £6 parking. **Wear the waterproof boots** — muddy and slick when wet. Pause at the Sligachan Old Bridge on the way for the classic Cuillin shot.
+- **Portree** *(~1–1.5 hrs)* — Skye's pastel-harbour capital. Early dinner, then roll east by ~18:30 to be back in Inverness by nine.
+
+*Skye extras (each trades against Portree time or the pools linger — daylight is the budget):* **Old Man of Storr** (steep 1.5–2 hr hike, or car-park view); **Kilt Rock & Mealt Falls** (15-min clifftop waterfall stop); **Fairy Glen** near Uig (~45 min, surreal cone hills); **Quiraing viewpoint** (dramatic, slow single-track); **Talisker Distillery** (Carbost, next to lunch — tour for the passenger); **Eilean Donan interior** (book). **Dunvegan Castle** usually closes mid-October — check before detouring.
+
+*Swap options:* skip Skye entirely and Day 4 reverts to a gentle flex day — spread the Day 2 sights out and rest before the drive south.
 
 ---
 
@@ -112,7 +119,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 
 **No booking needed:** Edinburgh Castle (you're only seeing it from outside) · National Museum of Scotland (free) · Arthur's Seat · Calton Hill · Scone Palace (tickets on the day; online slightly cheaper — last entry 4pm) · Leakey's Bookshop (free; closed Sundays)
 
-**If you swap any of these in, they need booking too:** Rosslyn Chapel · an underground / ghost tour · the Scotch Whisky Experience · the Cairngorm funicular · any North Berwick boat trip.
+**If you swap any of these in, they need booking too:** Rosslyn Chapel · an underground / ghost tour · the Scotch Whisky Experience · the Cairngorm funicular · any North Berwick boat trip · Scorrybreac in Portree (the nice Skye dinner — Tue–Sat only) · Talisker Distillery tour · Eilean Donan interior.
 
 *Late-October note: book activities a week or two out — daylight is short (afternoon sunsets, and the clocks go back at month's end) and some places run reduced autumn hours or close for the season entirely.*
 
@@ -148,6 +155,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 **Day-to-day**
 - [ ] Packable daypack for hikes and day trips
 - [ ] Reusable water bottle
+- [ ] Towel + swimsuit — only if someone's brave enough for a Fairy Pools dip (it's Baltic)
 - [ ] Lip balm / moisturizer (the wind is drying), any meds, small first-aid kit
 - [ ] Sunglasses — the low autumn sun is blinding when it does come out
 

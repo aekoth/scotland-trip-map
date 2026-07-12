@@ -278,10 +278,29 @@ const STEPS = [
    title:'Loch Ness boat cruise', dur:'~1 hr', coords:[57.3330,-4.4660], zoom:12,
    kick:'Day 2 · Loch Ness',
    body:`<p>The best way to actually be <i>on</i> the loch — keep an eye out for Nessie. Book ahead in autumn as sailings thin out.</p>`,
-   food:[
-     {meal:'Dinner',name:'Rocpool',coords:[57.4778,-4.2287],d:'back in Inverness — the city\'s Michelin-starred brasserie on the River Ness. Book well ahead; the early-evening menu is great value.'},
-   ],
    tags:['Optional booking','On the water']},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 2',
+   title:'Culloden Battlefield', dur:'~1.5–2 hrs', coords:[57.4775,-4.0936], zoom:12,
+   kick:'Day 2 · Afternoon', drive:'🚗 ~25 min from Loch Ness, east of Inverness',
+   body:`<p class="lead">The 1746 battlefield — quiet and moving, and a big one for <i>Outlander</i> fans. The visitor centre tells the story well. It slots neatly after the loch since it\'s only 15 min from town.</p>`,
+   tags:['History','Outlander']},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 2',
+   title:'Clava Cairns', dur:'~30 min', coords:[57.4736,-4.0747], zoom:14,
+   kick:'Day 2 · Afternoon',
+   body:`<p>4,000-year-old standing stones and burial cairns, right next door to Culloden. Atmospheric and free.</p>`,
+   tags:['Free','Standing stones']},
+
+  {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 2',
+   title:"Leakey's Bookshop", dur:'~1 hr', coords:[57.4802,-4.2265], zoom:15,
+   kick:'Day 2 · Back in town',
+   body:`<p class="lead">Scotland\'s largest second-hand bookshop, filling an 18th-century Gaelic church on Church Street — floor-to-ceiling shelves, a spiral staircase, and a wood-burning stove crackling in the middle of it all.</p>
+   <p>The perfect end to a full day — it\'s indoors, open till 5:30, and a two-minute walk from dinner.</p>`,
+   food:[
+     {meal:'Dinner',name:'River House',coords:[57.4794,-4.2308],d:'tiny riverside seafood spot two streets away — exceptional, and it books out. Reserve ahead.'},
+   ],
+   tags:['Free to browse','Closed Sundays','Open 10–5:30']},
 
   {type:'stop', route:true, region:'north', regionTxt:'Cairngorms · North', day:'Day 3', fav:true,
    title:'Horse trek in the Cairngorms', dur:'1–2 hrs in the saddle', coords:[57.1917,-3.8253], zoom:11,
@@ -289,7 +308,7 @@ const STEPS = [
    body:`<p class="lead">Aviemore is the heart of Highland pony trekking. Ride through ancient pine forest and heather with mountain views, then spend the rest of the day on easy forest walks or the funicular.</p>`,
    food:[
      {meal:'Lunch',name:'The Old Bridge Inn',coords:[57.1876,-3.8214],d:'riverside gastropub in an old gamekeeper\'s cottage by the Spey — log fire, great after the saddle. Lunch served 12–2:15.'},
-     {meal:'Dinner',name:'Black Isle Bar',coords:[57.4793,-4.2271],d:'back in Inverness — wood-fired pizza and the brewery\'s own organic ales. Casual and buzzy.'},
+     {meal:'Dinner',name:'Rocpool',coords:[57.4778,-4.2287],d:'back in Inverness in good time tonight — the city\'s Michelin-starred brasserie on the River Ness. Book well ahead; the early-evening menu is great value.'},
    ],
    tags:['Book ahead','Pick route length','Cairngorms']},
 
@@ -301,30 +320,49 @@ const STEPS = [
    tags:['Book ahead','Hand-feeding','Bottle-feed a calf'],
    callout:`<b>Pairs perfectly with the horse trek</b> — trek in the morning, lunch at the Old Bridge Inn, coos in the afternoon. Book both Rothiemurchus experiences together.`},
 
-  {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 4',
-   title:'Culloden Battlefield', dur:'~1.5–2 hrs', coords:[57.4775,-4.0936], zoom:12,
-   kick:'Day 4 · Highlands flex',
-   body:`<p class="lead">The 1746 battlefield — quiet and moving, and a big one for <i>Outlander</i> fans. The visitor centre tells the story well.</p>`,
-   tags:['History','Outlander']},
+  {type:'stop', route:true, region:'north', regionTxt:'Isle of Skye · West', day:'Day 4',
+   title:'West to Skye — Eilean Donan', dur:'Photo stop', coords:[57.2739,-5.5164], zoom:12,
+   kick:'Day 4 · Isle of Skye', drive:'🚗 ~1 hr 45 min from Inverness — leave by ~7:30',
+   body:`<p class="lead">The big island day. Head west along Loch Ness and the A87, and pause at <b>Eilean Donan Castle</b> — the castle-on-an-islet from every Scotland postcard, right beside the road. The exterior photo is the classic; go inside only if time allows (opens 10am).</p>`,
+   tags:['Photo icon','On the way'],
+   callout:`<b>Biggest day of the trip:</b> ~6½ hrs of driving round-trip. Start at first light (~7:40), keep stops disciplined, and treat everything after the Fairy Pools as a bonus. If that sounds heavy, you can flip Day 3 and Day 4 so the gentler animal day buffers this and the Day 5 drive south.`},
 
-  {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 4',
-   title:'Clava Cairns', dur:'~30 min', coords:[57.4736,-4.0747], zoom:14,
-   kick:'Day 4 · Highlands flex',
-   body:`<p>4,000-year-old standing stones and burial cairns, right next door to Culloden. Atmospheric and free.</p>`,
+  {type:'stop', route:true, region:'north', regionTxt:'Isle of Skye · West', day:'Day 4', fav:true,
+   title:'The Fairy Pools', dur:'~2–2.5 hrs walk', coords:[57.2497,-6.2589], zoom:12,
+   kick:'Day 4 · Isle of Skye', drive:'🚗 ~1 hr 20 min past Eilean Donan, via Glen Brittle',
+   body:`<p class="lead">Crystal-blue pools and waterfalls stepping down from the Black Cuillin — the walk is ~2.4 km each way on a good gravel path with footbridges (they\'ve replaced the old stepping stones). About 20 min to the first big waterfall, then pool after pool.</p>
+   <p>On the way in, pause at the <b>Sligachan Old Bridge</b> for the classic Cuillin mountain shot.</p>`,
    food:[
-     {meal:'Lunch',name:'Culloden visitor centre café',d:'simple soups and sandwiches right at the battlefield — easiest option between the two sites.'},
+     {meal:'Lunch',name:'The Old Inn, Carbost',coords:[57.3025,-6.3550],d:'cosy lochside pub 15 min from the pools — fires, chowder, occasional live music. Talisker Distillery is next door if the passenger wants a dram.'},
+     {meal:'Seafood',name:'The Oyster Shed',coords:[57.3050,-6.3600],d:'famous seafood shack above the distillery — oysters and crab eaten off barrels. Check winter hours before counting on it.'},
    ],
-   tags:['Free','Standing stones']},
+   tags:['£6 parking','Waterproof boots','Bring the camera'],
+   callout:`<b>Wear the waterproof boots</b> — the path gets muddy and the stones are slick when wet. The pools are swimmable year-round for the brave, but in late October it\'s properly Baltic.`},
 
-  {type:'stop', route:true, region:'north', regionTxt:'Inverness · North', day:'Day 4',
-   title:"Leakey's Bookshop", dur:'~1 hr', coords:[57.4802,-4.2265], zoom:15,
-   kick:'Day 4 · Back in town',
-   body:`<p class="lead">Scotland\'s largest second-hand bookshop, filling an 18th-century Gaelic church on Church Street — floor-to-ceiling shelves, a spiral staircase, and a wood-burning stove crackling in the middle of it all.</p>
-   <p>The perfect late-afternoon wander after the battlefield — it\'s a two-minute walk from the Church Street pubs.</p>`,
+  {type:'stop', route:true, region:'north', regionTxt:'Isle of Skye · West', day:'Day 4',
+   title:'Portree &amp; the drive home', dur:'~1–1.5 hrs in town', coords:[57.4125,-6.1953], zoom:13,
+   kick:'Day 4 · Isle of Skye', drive:'🚗 ~35 min from Carbost · ~2 hr 40 min back to Inverness',
+   body:`<p class="lead">Skye\'s pastel-harbour capital — wander the harbourfront, grab an early dinner, then point the car east. Aim to be rolling by ~18:30 so you\'re back in Inverness by nine.</p>`,
    food:[
-     {meal:'Dinner',name:'River House',coords:[57.4794,-4.2308],d:'tiny riverside seafood spot two streets away — exceptional, and it books out. Reserve for your last Highland night.'},
+     {meal:'Dinner',name:'Scorrybreac',coords:[57.4136,-6.1930],d:'tiny modern-Scottish spot above the harbour — the special dinner on Skye. Open Tue–Sat from 5pm (closed Sun/Mon); book ahead.'},
+     {meal:'Casual',name:'The Isles Inn',coords:[57.4131,-6.1946],d:'unpretentious pub with fires and solid plates — no booking stress before the long drive.'},
+     {meal:'Backup',name:'Black Isle Bar',coords:[57.4793,-4.2271],d:'if you\'d rather just drive — wood-fired pizza and organic ales back in Inverness, kitchen open late.'},
    ],
-   tags:['Free to browse','Closed Sundays','Open 10–5:30']},
+   tags:['Harbour town','Early dinner','Home by ~21:00']},
+
+  // ---- Skye swaps ----
+  {type:'swaps', region:'north', regionTxt:'Isle of Skye · West', day:'Swap options',
+   title:'Skye — extras &amp; swaps', kick:'Isle of Skye',
+   intro:`Daylight is the budget (~16:40 sunset) — each of these trades against Portree time or the Fairy Pools linger. Hover a card to locate it.`,
+   options:[
+     {n:'+',name:'Old Man of Storr',coords:[57.5064,-6.1730],info:'The iconic rock pinnacle, 15 min north of Portree — a steep 1.5–2 hr hike, or just admire it from the car park.'},
+     {n:'+',name:'Kilt Rock & Mealt Falls',coords:[57.6072,-6.1719],info:'A 15-minute clifftop stop — a waterfall plunging straight into the sea off pleated basalt cliffs.'},
+     {n:'+',name:'Fairy Glen',coords:[57.5866,-6.3535],info:'A surreal miniature landscape of cone hills and spiral paths near Uig — ~45 min of wandering, pairs thematically with the pools.'},
+     {n:'+',name:'Quiraing viewpoint',coords:[57.6435,-6.2645],info:'Arguably the island\'s most dramatic landscape — reached by a slow single-track road; only with spare daylight.'},
+     {n:'+',name:'Talisker Distillery',coords:[57.3027,-6.3560],book:true,info:'Skye\'s famous distillery, next to the Old Inn in Carbost — tour for the passenger, shop for the driver.'},
+     {n:'+',name:'Eilean Donan interior',coords:[57.2739,-5.5164],book:true,info:'Go beyond the photo stop and tour inside — furnished rooms and clan history. Opens 10am.'},
+     {n:'!',name:'Dunvegan Castle',coords:[57.4486,-6.5904],info:'The MacLeod seat is wonderful but usually closes for the season in mid-October — check before detouring.'},
+   ]},
 
   // ---- North swaps ----
   {type:'swaps', region:'north', regionTxt:'Inverness · North', day:'Swap options',
@@ -336,9 +374,9 @@ const STEPS = [
      {n:2,name:'Lochside walk',info:'Skip the cruise and take a quiet walk along the shore instead.'},
      {n:3,name:'More Rothiemurchus',coords:[57.1650,-3.8000],info:'Beyond the coos — estate trails, lochs, and wildlife walks if you want to linger on the estate.'},
      {n:3,name:'Cairngorm funicular',coords:[57.1331,-3.6688],book:true,info:'Big mountain views without the climb. Pre-book.'},
-     {n:4,name:'Glen Affric',coords:[57.2730,-4.9650],info:'A half-day in what many call Scotland\'s prettiest glen.'},
-     {n:4,name:'Chanonry Point',coords:[57.5742,-4.0905],info:'Wild dolphin-watching from the shore — one of the UK\'s best spots.'},
-     {n:4,name:'Isle of Skye',coords:[57.4125,-6.1953],info:'Ambitious long day (~2.5 hrs each way) — only if you\'re up for a big drive.'},
+     {n:2,name:'Glen Affric',coords:[57.2730,-4.9650],info:'Swap the Culloden afternoon for a half-day in what many call Scotland\'s prettiest glen.'},
+     {n:2,name:'Chanonry Point',coords:[57.5742,-4.0905],info:'Wild dolphin-watching from the shore — one of the UK\'s best spots; an easy swap for the Day 2 afternoon.'},
+     {n:4,name:'Skip Skye, keep the flex day',info:'If the island mega-day loses its appeal, Day 4 reverts to a gentle flex day — spread the Day 2 sights out and rest before the drive south.'},
    ]},
 
   // ---------- DRIVE DAY ----------
@@ -516,6 +554,9 @@ const BOOKING = [
     'Scotch Whisky Experience',
     'Cairngorm funicular',
     'North Berwick boat trip',
+    'Scorrybreac, Portree <i>(the nice Skye dinner — Tue–Sat only)</i>',
+    'Talisker Distillery tour <i>(Carbost, by the Fairy Pools)</i>',
+    'Eilean Donan interior tickets',
   ]},
 ];
 
@@ -551,6 +592,7 @@ const PACKING = [
     'Reusable water bottle',
     'Lip balm / moisturizer, any meds, small first-aid kit',
     'Sunglasses (low autumn sun is blinding)',
+    'Towel + swimsuit — only if someone\'s brave enough for a Fairy Pools dip (it\'s Baltic)',
   ]},
   {h:'Documents & money', items:[
     'Passports + travel insurance details',
@@ -705,7 +747,7 @@ STEPS.forEach((s,idx)=>{
         <span class="f">★ Loch Ness</span><span class="f">★ Highland horse ride</span>
         <span class="f">★ Blair Castle</span><span class="f">★ Whisky tour</span>
         <span class="f">★ Edinburgh Castle</span><span class="f">★ Holyrood Palace</span>
-        <span class="f">★ Bag workshop</span><span class="f">★ Arthur\'s Seat</span><span class="f">★ Hairy coo feeding</span>
+        <span class="f">★ Bag workshop</span><span class="f">★ Arthur\'s Seat</span><span class="f">★ Hairy coo feeding</span><span class="f">★ The Fairy Pools</span>
       </div>
       <div class="scrollcue"><span class="arrow">↓</span> Scroll to begin the journey</div>
     </div>`;
@@ -835,6 +877,9 @@ let current=-1;
 function activate(idx){
   if(idx===current) return;
   current=idx;
+  // If the page loaded in a background tab, Leaflet cached a 0x0 size and
+  // every flyTo throws — re-measure before moving the map.
+  if(map.getSize().x===0) map.invalidateSize();
   const s=STEPS[idx];
   document.querySelectorAll('.step').forEach((el,i)=>el.classList.toggle('active', i===idx));
 
@@ -901,6 +946,7 @@ activate(0);
 pickActive();
 window.addEventListener('load',()=>setTimeout(()=>{map.invalidateSize();pickActive();},200));
 let _rt; window.addEventListener('resize',()=>{ clearTimeout(_rt); _rt=setTimeout(()=>{map.invalidateSize();pickActive();},200); });
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible'){ map.invalidateSize(); const c=current; current=-1; activate(c<0?0:c); } });
 </script>
 </body>
 </html>
