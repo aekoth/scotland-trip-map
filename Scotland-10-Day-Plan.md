@@ -32,7 +32,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 ### Day 3 — Horse ride in the Cairngorms
 - **Drive to Aviemore** *(~45 min each way)* — the heart of Highland pony trekking.
 - **Horse trek** *(1–2 hrs in the saddle)* — riding through ancient pine forest and heather with mountain views. *Book ahead; pick the route length when you book.*
-- **Hairy Coo Safari + Calves & Coos, Rothiemurchus** *(~1–2 hrs)* — a ranger calls the Highland cows right up to the fence for hand-feeding (~£14–20pp), and the Calves & Coos upgrade adds a Land Rover trip to bottle-feed the orphan calf. Five minutes from Aviemore — pairs perfectly with the trek. *Book ahead.*
+- **Hairy Coo Safari, Rothiemurchus — 15:30 slot** *(~1 hr)* — a ranger calls the Highland cows right up to the fence for hand-feeding (~£14–20pp). Five minutes from Aviemore. Day shape: trek ~10:00 → Old Bridge Inn lunch (12–2:15) → coos at 15:30 in the golden light. *Book ahead. (The Calves & Coos bottle-feeding upgrade is spring calving season only — not available in October.)*
 - **Time in the Cairngorms** *(remainder)* — easy forest walks, or the mountain funicular.
 
 *Swap options:* longer ride; more Rothiemurchus estate activities (trails, lochs, wildlife); or the Cairngorm funicular for big views without the climb.
@@ -117,7 +117,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 - [ ] Horse trek (Cairngorms / Aviemore)
 - [ ] Whisky tour (Pitlochry)
 - [ ] Loch Ness cruise (optional)
-- [ ] Hairy Coo Safari + Calves & Coos bottle-feeding (Rothiemurchus)
+- [ ] Hairy Coo Safari, 15:30 (Rothiemurchus) — calf bottle-feeding is spring-only, skip it
 
 **No booking needed:** Edinburgh Castle (you're only seeing it from outside) · National Museum of Scotland (free) · Arthur's Seat · Calton Hill · Scone Palace (tickets on the day; online slightly cheaper — last entry 4pm) · Leakey's Bookshop (free; closed Sundays) · An Corran dinosaur footprints (free — check Staffin tide tables; low tide only) · Old Man of Storr (just the paid car park)
 
