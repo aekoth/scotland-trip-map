@@ -176,6 +176,8 @@
     line-height:18px;font-size:13px;font-weight:700}
   ul.check label{font-size:14.5px;cursor:pointer;color:var(--ink)}
   ul.check li.done label{text-decoration:line-through;color:#9aa3ab}
+  ul.check li.booked .donemark{width:20px;flex:0 0 auto;text-align:center;font-size:14px;margin-top:1px}
+  ul.check li.booked label{cursor:default;color:var(--ink)}
   ul.check label b{color:var(--loch)}
   .resetbtn{margin-top:14px;font-size:12.5px;color:var(--ink-soft);background:none;border:1px solid var(--line);
     padding:6px 12px;border-radius:8px;cursor:pointer}
@@ -530,22 +532,38 @@ const STEPS = [
   {type:'packing', region:'south', regionTxt:'Before you go', day:'Pack'},
 ];
 
-/* ---- Booking checklist data ---- */
+/* ---- Booking checklist data ----
+   Items can be strings (open, tickable) or {done:true, t:'...'} (booked — rendered
+   with a permanent ✅ so status shows on every device). */
 const BOOKING = [
-  {h:'Book first — these sell out or set your dates', note:'Lock these before anything else.', items:[
-    'Flights — into <b>Inverness</b>, out of <b>Edinburgh</b> (likely a UK/EU connection)',
-    'Hotel 1 — <b>Inverness</b>, 4 nights',
-    'Hotel 2 — <b>Edinburgh</b>, 5 nights',
-    'Rental car — <b>one-way, Inverness → Edinburgh</b>; reserve an <b>automatic</b>',
+  {h:'The big four — locked in', note:'All four booked 18 July 2026.', items:[
+    {done:true,t:'Flights — KLM booking <b>XCF9XR</b>, both travellers · IAH → Inverness Oct 18–19 · Edinburgh → Houston Thu Oct 29 (05:40 dep)'},
+    {done:true,t:'Inverness stay — Airbnb "Scott\'s Spot", Oct 19–23'},
+    {done:true,t:'Edinburgh stay — Grassmarket Hotel, Oct 23–28 (#13300483)'},
+    {done:true,t:'Rental car — Hertz Qashqai automatic, one-way INV airport → EDI airport (ref GB907571870)'},
   ]},
-  {h:'Book ahead — timed tickets / very popular', items:[
-    'Blair Castle <i>(mind the Day 5 season note)</i>',
-    'Palace of Holyroodhouse',
-    'Islander bag workshop',
-    'Horse trek (Cairngorms / Aviemore)',
-    '<s>Whisky tour</s> <i>— skipped (Edradour closed; decided against Blair Athol). Swap back in anytime.</i>',
-    'Loch Ness cruise <i>(optional)</i>',
-    'Hairy Coo Safari, 15:30 (Rothiemurchus) <i>— calf bottle-feeding is spring-only, skip it</i>',
+  {h:'Timed tickets & experiences', items:[
+    {done:true,t:'Blair Castle — Fri Oct 23, 2 adults (ref 40393)'},
+    {done:true,t:'Palace of Holyroodhouse — Sat Oct 24'},
+    {done:true,t:'Islander bag workshop — Sun Oct 25, 11:00, Candlemaker Row (#364160891)'},
+    'Horse trek — Alvie Stables, Wed Oct 21 ~10:00 <i>(awaiting call-back — Ingrid, +44 7831 495397)</i>',
+    'Hairy Coo Safari — Rothiemurchus, Wed Oct 21, 15:30 <i>(book as soon as the trek time is fixed)</i>',
+    'Grassmarket extra night — Wed Oct 28, £172 <i>(awaiting the hotel\'s confirmation + payment link)</i>',
+    '<s>Whisky tour</s> <i>— skipped (Edradour closed; decided against Blair Athol). Day-of swap if the mood strikes.</i>',
+    '<s>Loch Ness cruise</s> <i>— not pre-booking; decide on the day at Urquhart (midweek late-Oct sailings don\'t sell out)</i>',
+  ]},
+  {h:'Dinner reservations — book in September', items:[
+    'Scorrybreac, Portree — Thu Oct 22 <i>(Tue–Sat only; their website was down 18 Jul — retry)</i>',
+    'Rocpool, Inverness — Wed Oct 21 · +44 1463 717274',
+    'River House, Inverness — Tue Oct 20 · +44 1463 222033',
+  ]},
+  {h:'Paperwork & people', items:[
+    {done:true,t:'UK ETA — Slade, approved (ref 2020-0000-5756-5084)'},
+    'UK ETA — Morgan <i>(waiting on her new passport, then 10 min in the official UK ETA app + add passport number to KLM My Trip)</i>',
+    {done:true,t:'Travel insurance — Allianz (KLMUSA500003327) + Generali on the Airbnb'},
+    {done:true,t:'Airbnb host messaged — parking, heating, early check-in'},
+    {done:true,t:'Allianz emailed — confirming Morgan\'s coverage + dates through Oct 29'},
+    'Closer to the trip: Staffin tide tables (Thu Oct 22) · 3am taxi via hotel reception · offline maps · plan the bonus Wednesday (Oct 28)',
   ]},
   {h:'No booking needed', items:[
     'Edinburgh Castle (seen from outside)',
@@ -563,7 +581,6 @@ const BOOKING = [
     'Scotch Whisky Experience',
     'Cairngorm funicular',
     'North Berwick boat trip',
-    'Scorrybreac, Portree <i>(the nice Skye dinner — Tue–Sat only)</i>',
     'Talisker Distillery tour <i>(Carbost, by the Fairy Pools)</i>',
     'Eilean Donan interior tickets',
   ]},
@@ -793,7 +810,7 @@ STEPS.forEach((s,idx)=>{
     inner=`<div class="card checkwrap">
       <div class="kicker"><span>Before you go</span></div>
       <h2>Reserve &amp; book</h2>
-      <p>Ticked items save automatically on this device.</p>
+      <p>✅ = booked and confirmed. The checkboxes are what\'s left — ticks save on this device.</p>
       <div class="progress-mini" id="bookProg"></div>
       ${BOOKING.map((g,gi)=>`<div class="grp"><h3>${g.h}</h3>${g.note?`<p class="note">${g.note}</p>`:''}
         <ul class="check">${g.items.map((it,ii)=>checkLi('book',gi,ii,it)).join('')}</ul></div>`).join('')}
@@ -827,7 +844,11 @@ STEPS.forEach((s,idx)=>{
   }
 });
 
-function checkLi(scope,gi,ii,text){
+function checkLi(scope,gi,ii,item){
+  if(typeof item==='object' && item.done){
+    return `<li class="booked"><span class="donemark">✅</span><label>${item.t}</label></li>`;
+  }
+  const text = typeof item==='object' ? item.t : item;
   const key=`scot-${scope}-${gi}-${ii}`;
   return `<li><input type="checkbox" id="${key}" data-key="${key}"><label for="${key}">${text}</label></li>`;
 }

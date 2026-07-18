@@ -104,24 +104,32 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 
 ## Quick booking checklist
 
-**Book first — these sell out or set your dates:**
-- [ ] Flights — into **Inverness**, out of **Edinburgh** (Inverness is a small airport, so you'll likely connect via a UK/EU hub)
-- [ ] Hotel 1 — **Inverness**, 4 nights
-- [ ] Hotel 2 — **Edinburgh**, 5 nights
-- [ ] Rental car — **one-way, Inverness → Edinburgh**; reserve an **automatic** if you don't want a manual
+**The big four — all booked 18 July 2026:**
+- [x] Flights — KLM booking XCF9XR, both travellers · IAH → Inverness Oct 18–19 · Edinburgh → Houston Thu Oct 29 (05:40)
+- [x] Inverness stay — Airbnb "Scott's Spot", Oct 19–23
+- [x] Edinburgh stay — Grassmarket Hotel, Oct 23–28 (#13300483) — *extra night Oct 28 (£172) awaiting hotel confirmation*
+- [x] Rental car — Hertz Qashqai automatic, one-way INV airport → EDI airport (ref GB907571870)
 
-**Book ahead — timed tickets / very popular:**
-- [ ] Blair Castle — *mind the season note on Day 5*
-- [ ] Holyroodhouse
-- [ ] Islander bag workshop
-- [ ] Horse trek (Cairngorms / Aviemore)
+**Timed tickets & experiences:**
+- [x] Blair Castle — Fri Oct 23, 2 adults (ref 40393)
+- [x] Holyroodhouse — Sat Oct 24
+- [x] Islander bag workshop — Sun Oct 25, 11:00, Candlemaker Row (#364160891)
+- [ ] Horse trek — Alvie Stables, Wed Oct 21 ~10:00 (awaiting call-back — Ingrid, +44 7831 495397)
+- [ ] Hairy Coo Safari — Rothiemurchus, Wed Oct 21, 15:30 (book once the trek time is fixed)
 - ~~Whisky tour (Pitlochry)~~ — skipped
-- [ ] Loch Ness cruise (optional)
-- [ ] Hairy Coo Safari, 15:30 (Rothiemurchus) — calf bottle-feeding is spring-only, skip it
+- ~~Loch Ness cruise~~ — not pre-booking; decide on the day at Urquhart
+
+**Dinner reservations — book in September:** Scorrybreac, Portree — Thu Oct 22 (Tue–Sat only) · Rocpool — Wed Oct 21 (+44 1463 717274) · River House — Tue Oct 20 (+44 1463 222033)
+
+**Paperwork & people:**
+- [x] UK ETA — Slade, approved
+- [ ] UK ETA — Morgan (waiting on her new passport, then the official app + update KLM My Trip)
+- [x] Travel insurance — Allianz (KLMUSA500003327) + Generali on the Airbnb; Allianz emailed re Morgan's coverage
+- [x] Airbnb host messaged (parking / heating / early check-in)
 
 **No booking needed:** Edinburgh Castle (you're only seeing it from outside) · National Museum of Scotland (free) · Arthur's Seat · Calton Hill · Scone Palace (tickets on the day; online slightly cheaper — last entry 4pm) · Leakey's Bookshop (free; closed Sundays) · An Corran dinosaur footprints (free — check Staffin tide tables; low tide only) · Old Man of Storr (just the paid car park)
 
-**If you swap any of these in, they need booking too:** Rosslyn Chapel · an underground / ghost tour · the Scotch Whisky Experience · the Cairngorm funicular · any North Berwick boat trip · Scorrybreac in Portree (the nice Skye dinner — Tue–Sat only) · Talisker Distillery tour · Eilean Donan interior.
+**If you swap any of these in, they need booking too:** Rosslyn Chapel · an underground / ghost tour · the Scotch Whisky Experience · the Cairngorm funicular · any North Berwick boat trip · Talisker Distillery tour · Eilean Donan interior.
 
 *Late-October note: book activities a week or two out — daylight is short (afternoon sunsets, and the clocks go back at month's end) and some places run reduced autumn hours or close for the season entirely.*
 
