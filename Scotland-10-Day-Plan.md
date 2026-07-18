@@ -56,7 +56,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 
 ### Day 5 — South through the middle *(full day, ~3.5 hrs driving + stops)*
 - **Drive to Pitlochry** *(~1 hr 45 min)*.
-- **Whisky tour — Blair Athol distillery** *(~1–1.5 hrs)* — your one alcohol tour, right in Pitlochry on the route. *Book ahead. (Edradour is closed to all visitors until further notice — checked July 2026. Dewar's Aberfeldy remains the swap option.)*
+- ~~Whisky tour~~ — *skipped (July 2026): Edradour is closed to all visitors until further notice, and we decided against Blair Athol. If the mood strikes on the day, Blair Athol (Pitlochry) or Dewar's Aberfeldy take late bookings.*
 - **Blair Castle tour** *(~1.5–2 hrs)* — the fully-furnished, white-turreted family castle, 15 min past Pitlochry. The furnished one you've been waiting for. *Book ahead.*
 - **Scone Palace** *(~1–1.5 hrs)* — the crowning place of Scotland's kings (Moot Hill + the replica Stone of Scone), a furnished Georgian-Gothic palace with peacocks in the grounds. ~40 min south of Pitlochry, 2 min off the route at Perth. *Open daily to Oct 31 only, last entry 4pm — leave Blair by ~2:30, or trim this stop if the day runs long.*
 - **Drive on to Edinburgh** *(~1 hr 45 min)* — **drop the rental car** when you arrive; you won't need it in the city.
@@ -115,7 +115,7 @@ The idea: settle into Inverness for the Highlands, road-trip south on Day 5 (hit
 - [ ] Holyroodhouse
 - [ ] Islander bag workshop
 - [ ] Horse trek (Cairngorms / Aviemore)
-- [ ] Whisky tour (Pitlochry)
+- ~~Whisky tour (Pitlochry)~~ — skipped
 - [ ] Loch Ness cruise (optional)
 - [ ] Hairy Coo Safari, 15:30 (Rothiemurchus) — calf bottle-feeding is spring-only, skip it
 

@@ -404,13 +404,6 @@ const STEPS = [
    tags:['Full driving day','~3.5 hrs total']},
 
   {type:'stop', route:true, region:'drive', regionTxt:'The Drive South', day:'Day 5', fav:true,
-   title:'Whisky tour — Blair Athol', dur:'~1–1.5 hrs', coords:[56.6986,-3.7375], zoom:13,
-   kick:'Day 5 · Drive day',
-   body:`<p>Your one alcohol tour, right in Pitlochry on the route. Designated driver, mind!</p>
-   <p><i>Note: Edradour (the tiny farm distillery nearby) is closed to all visitors until further notice — checked July 2026 — so Blair Athol it is. Dewar\'s Aberfeldy remains the swap.</i></p>`,
-   tags:['Book ahead','Tasting']},
-
-  {type:'stop', route:true, region:'drive', regionTxt:'The Drive South', day:'Day 5', fav:true,
    title:'Blair Castle tour', dur:'~1.5–2 hrs', coords:[56.7656,-3.8553], zoom:13,
    kick:'Day 5 · Drive day', drive:'🚗 ~15 min past Pitlochry',
    body:`<p class="lead">The fully-furnished, white-turreted family castle — the furnished one you\'ve been waiting for.</p>`,
@@ -422,7 +415,7 @@ const STEPS = [
    kick:'Day 5 · Drive day', drive:'🚗 ~40 min south of Pitlochry — 2 min off the route at Perth',
    body:`<p class="lead">The crowning place of Scotland\'s kings — Macbeth, Robert the Bruce and 40-odd others were crowned on <b>Moot Hill</b>, where a replica Stone of Scone still sits. Inside, a fully furnished Georgian-Gothic palace; outside, peacocks strutting the grounds.</p>`,
    tags:['Furnished palace','Stone of Scone','Peacocks'],
-   callout:`<b>⏱ Same season cliff as Blair:</b> open daily only until <b>Oct 31</b>, with <b>last entry 4pm</b>. It makes Day 5 a big day — leave Blair by ~2:30 to make it comfortably. If the day runs long, this is the stop to trim (or trade against the whisky tour).`},
+   callout:`<b>⏱ Same season cliff as Blair:</b> open daily only until <b>Oct 31</b>, with <b>last entry 4pm</b>. With the whisky tour dropped the day finally breathes: castle late morning, Moulin Inn lunch, Scone by ~3pm, Edinburgh for dinner. Still aim to leave Blair by ~2:30.`},
 
   {type:'stop', route:true, region:'drive', regionTxt:'The Drive South', day:'Day 5',
    title:'Arrive in Edinburgh', dur:'Evening', coords:[55.9533,-3.1883], zoom:12,
@@ -438,7 +431,7 @@ const STEPS = [
    title:'Drive day — swap options', kick:'In-between region',
    intro:`Options along the A9 corridor between the Highlands and the city.`,
    options:[
-     {n:5,name:'Dewar\'s Aberfeldy',coords:[56.6170,-3.8660],book:true,info:'Swap the distillery for Dewar\'s Aberfeldy nearby — slick visitor experience.'},
+     {n:5,name:'Whisky, if you reconsider',coords:[56.6170,-3.8660],book:true,info:'The tour was cut from the plan, but if the mood strikes: Blair Athol is right in Pitlochry, or Dewar\'s Aberfeldy nearby. (Edradour is closed to visitors.) Both take late bookings.'},
      {n:5,name:'The Kelpies',coords:[56.0197,-3.7556],info:'Quick photo stop at the giant 30m horse-head sculptures near the end of the drive.'},
      {n:5,name:'Stirling Castle',coords:[56.1239,-3.9485],book:true,info:'Open year-round with furnished royal apartments — the drive-day castle if your dates fall after Oct 30.'},
      {n:5,name:'Skip the castle',info:'Bank the time for Edinburgh — but this is the day Blair fits best, so think twice.'},
@@ -550,7 +543,7 @@ const BOOKING = [
     'Palace of Holyroodhouse',
     'Islander bag workshop',
     'Horse trek (Cairngorms / Aviemore)',
-    'Whisky tour — Blair Athol, Pitlochry <i>(Edradour is closed to visitors, checked Jul 2026)</i>',
+    '<s>Whisky tour</s> <i>— skipped (Edradour closed; decided against Blair Athol). Swap back in anytime.</i>',
     'Loch Ness cruise <i>(optional)</i>',
     'Hairy Coo Safari, 15:30 (Rothiemurchus) <i>— calf bottle-feeding is spring-only, skip it</i>',
   ]},
@@ -762,7 +755,7 @@ STEPS.forEach((s,idx)=>{
       <p class="sub">Late October · two bases, <b>Inverness</b> in the north then <b>Edinburgh</b> in the south, with the best of the middle caught on the drive between. Only two hotels the whole trip.</p>
       <div class="favs">
         <span class="f">★ Loch Ness</span><span class="f">★ Highland horse ride</span>
-        <span class="f">★ Blair Castle</span><span class="f">★ Whisky tour</span>
+        <span class="f">★ Blair Castle</span>
         <span class="f">★ Edinburgh Castle</span><span class="f">★ Holyrood Palace</span>
         <span class="f">★ Bag workshop</span><span class="f">★ Arthur\'s Seat</span><span class="f">★ Hairy coo feeding</span><span class="f">★ The Fairy Pools</span>
       </div>
